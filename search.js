@@ -9,7 +9,7 @@ function renderSearch() {
   });
   results.innerHTML = products.map((product) => `
     <article class="product-tile">
-      <a class="tile-link" href="product-detail.html" data-product-id="${product.id}">
+      <a class="tile-link" href="/product-detail" data-product-id="${product.id}">
         <div class="tile-image ${product.imageClass || ""}" ${goodformImageStyle(product)}></div>
         <h3>${product.name}</h3>
         <p>${product.summary}</p>
@@ -31,5 +31,6 @@ document.querySelectorAll("[data-search-chip]").forEach((button) => {
   });
 });
 renderSearch();
+
 
 

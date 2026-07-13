@@ -39,11 +39,12 @@ function renderDetail() {
       const color = document.querySelector("[data-color].active")?.dataset.color;
       const size = document.querySelector("[data-size].active")?.dataset.size;
       addGoodformCartItem(product, { color, size });
-      window.location.href = button.dataset.cartAction === "buy" ? "checkout.html" : "cart.html";
+      window.location.href = button.dataset.cartAction === "buy" ? "/checkout" : "/cart";
     });
   });
 }
 
 renderDetail();
+
 
 

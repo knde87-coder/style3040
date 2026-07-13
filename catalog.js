@@ -10,7 +10,7 @@
 function productTile(product) {
   return `
     <article class="product-tile ${product.stockStatus === "숨김" ? "is-hidden-product" : ""}">
-      <a class="tile-link" href="product-detail.html" data-product-id="${product.id}">
+      <a class="tile-link" href="/product-detail" data-product-id="${product.id}">
         <div class="tile-image ${product.imageClass || ""}" ${goodformImageStyle(product)}></div>
         <h3>${product.name}</h3>
         <p>${product.summary}</p>
@@ -32,5 +32,6 @@ async function renderCatalog() {
 }
 
 renderCatalog();
+
 
 
