@@ -1,4 +1,4 @@
-import { copyFile, cp, mkdir } from "node:fs/promises";
+﻿import { copyFile, cp, mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 
 const root = process.cwd();
@@ -34,3 +34,19 @@ for (const file of files) {
 }
 
 await cp(join(root, "assets"), join(dist, "assets"), { recursive: true });
+const adminRoutes = [
+  "products",
+  "categories",
+  "inventory",
+  "orders",
+  "users",
+  "reviews",
+  "banners",
+  "stats"
+];
+
+for (const route of adminRoutes) {
+  const routeDir = join(dist, "admin", route);
+  await mkdir(routeDir, { recursive: true });
+  await copyFile(join(root, "admin.html"), join(routeDir, "index.html"));
+}
