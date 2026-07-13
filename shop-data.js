@@ -13,7 +13,7 @@ const GOODFORM_DEFAULT_PRODUCTS = [
     price: 29000,
     priceText: "29,000원",
     summary: "단정한 어깨선과 여유 있는 품",
-    description: "AI 모델 착장 기준으로 어깨선은 정돈되고 품은 편안하게 떨어지는 데일리 반팔입니다.",
+    description: "어깨선은 정돈되고 품은 여유 있게 떨어지는 남성 데일리 반팔입니다.",
     colors: ["화이트", "블랙", "멜란지"],
     sizes: ["M", "L", "XL"],
     imageClass: "tile-image-one",
@@ -28,7 +28,7 @@ const GOODFORM_DEFAULT_PRODUCTS = [
     price: 43000,
     priceText: "43,000원",
     summary: "다리가 길어 보이는 균형감",
-    description: "AI 모델 착장 기준으로 허리와 허벅지는 편안하게, 밑단으로 갈수록 자연스럽게 떨어지는 팬츠입니다.",
+    description: "허리와 허벅지는 편안하고 밑단은 자연스럽게 떨어지는 남성 와이드 슬랙스입니다.",
     colors: ["블랙", "차콜", "베이지"],
     sizes: ["M", "L", "XL"],
     imageClass: "tile-image-two",
@@ -43,7 +43,7 @@ const GOODFORM_DEFAULT_PRODUCTS = [
     price: 39000,
     priceText: "39,000원",
     summary: "여름에도 깔끔하게 떨어지는 핏",
-    description: "가볍고 시원한 터치감으로 청초한 분위기를 만드는 카라 니트입니다.",
+    description: "가볍고 시원한 터치감으로 단정한 분위기를 만드는 남성 카라 니트입니다.",
     colors: ["크림", "모카", "네이비"],
     sizes: ["M", "L"],
     imageClass: "tile-image-three",
@@ -58,7 +58,7 @@ const GOODFORM_DEFAULT_PRODUCTS = [
     price: 47000,
     priceText: "47,000원",
     summary: "어디에나 잘 맞는 세미와이드 라인",
-    description: "상의를 넣어 입어도 빼서 입어도 균형이 좋아 보이는 데님 팬츠입니다.",
+    description: "상의를 넣어 입어도 빼서 입어도 비율이 좋아 보이는 세미와이드 데님입니다.",
     colors: ["중청", "흑청"],
     sizes: ["S", "M", "L", "XL"],
     imageClass: "tile-image-four",
@@ -154,5 +154,6 @@ function saveGoodformOrder(order) {
 function goodformImageStyle(item) {
   return item?.imageData ? `style="background-image: linear-gradient(180deg, rgba(20,20,20,0.02), rgba(20,20,20,0.34)), url('${item.imageData}')"` : "";
 }
+
 
 
