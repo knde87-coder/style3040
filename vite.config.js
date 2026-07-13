@@ -11,7 +11,15 @@ const cleanRoutes = {
   "/checkout": "checkout.html",
   "/orders": "orders.html",
   "/search": "search.html",
-  "/admin": "admin.html"
+  "/admin": "admin.html",
+  "/admin/products": "admin.html",
+  "/admin/categories": "admin.html",
+  "/admin/inventory": "admin.html",
+  "/admin/orders": "admin.html",
+  "/admin/users": "admin.html",
+  "/admin/reviews": "admin.html",
+  "/admin/banners": "admin.html",
+  "/admin/stats": "admin.html"
 };
 
 function cleanUrlDevPlugin() {
@@ -60,3 +68,4 @@ export default defineConfig({
     }
   }
 });
+

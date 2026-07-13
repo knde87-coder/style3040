@@ -1,4 +1,4 @@
-{
+﻿{
   "framework": "vite",
   "installCommand": "npm install",
   "buildCommand": "npm run build",
@@ -21,6 +21,15 @@
     { "source": "/checkout", "destination": "/checkout.html" },
     { "source": "/orders", "destination": "/orders.html" },
     { "source": "/search", "destination": "/search.html" },
-    { "source": "/admin", "destination": "/admin.html" }
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/admin/products", "destination": "/admin.html" },
+    { "source": "/admin/categories", "destination": "/admin.html" },
+    { "source": "/admin/inventory", "destination": "/admin.html" },
+    { "source": "/admin/orders", "destination": "/admin.html" },
+    { "source": "/admin/users", "destination": "/admin.html" },
+    { "source": "/admin/reviews", "destination": "/admin.html" },
+    { "source": "/admin/banners", "destination": "/admin.html" },
+    { "source": "/admin/stats", "destination": "/admin.html" }
   ]
 }
+

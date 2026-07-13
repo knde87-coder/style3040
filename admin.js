@@ -6,6 +6,45 @@ const adminLoginId = document.getElementById("admin-login-id");
 const adminLoginPassword = document.getElementById("admin-login-password");
 const adminLoginMessage = document.getElementById("admin-login-message");
 const adminLogoutButton = document.getElementById("admin-logout-button");
+const adminPanels = Array.from(document.querySelectorAll("[data-admin-panel]"));
+const adminNavLinks = Array.from(document.querySelectorAll("[data-admin-section]"));
+const adminCurrentTitle = document.getElementById("admin-current-title");
+const adminSectionTitles = {
+  dashboard: "관리자 대시보드",
+  products: "상품 등록·수정·삭제",
+  categories: "카테고리 관리",
+  inventory: "옵션·재고 관리",
+  orders: "주문·배송 관리",
+  users: "회원 관리",
+  reviews: "리뷰·문의 관리",
+  banners: "배너·공지 관리",
+  stats: "매출·주문 통계"
+};
+
+function getAdminSectionFromPath() {
+  const last = window.location.pathname.split("/").filter(Boolean).pop();
+  if (!last || last === "admin") return "dashboard";
+  return adminSectionTitles[last] ? last : "dashboard";
+}
+
+function showAdminSection(section = getAdminSectionFromPath()) {
+  adminPanels.forEach((panel) => {
+    panel.hidden = panel.dataset.adminPanel !== section;
+  });
+  adminNavLinks.forEach((link) => {
+    link.classList.toggle("active", link.dataset.adminSection === section);
+  });
+  if (adminCurrentTitle) {
+    adminCurrentTitle.textContent = adminSectionTitles[section] || adminSectionTitles.dashboard;
+  }
+}
+
+adminNavLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    showAdminSection(link.dataset.adminSection);
+  });
+});
+
 
 function setAdminLoggedIn(value) {
   sessionStorage.setItem(ADMIN_AUTH_KEY, value ? "true" : "false");
@@ -36,6 +75,7 @@ if (adminLoginForm) {
 
       setAdminLoggedIn(true);
       adminLoginPassword.value = "";
+      showAdminSection();
       renderAdminProducts();
     } catch {
       adminLoginMessage.textContent = "관리자 아이디 또는 비밀번호가 맞지 않습니다.";
@@ -53,6 +93,7 @@ if (adminLogoutButton) {
 }
 
 setAdminLoggedIn(isAdminLoggedIn());
+showAdminSection();
 const adminForm = document.getElementById("admin-product-form");
 const adminMessage = document.getElementById("admin-message");
 const adminPreview = document.getElementById("admin-preview-list");
@@ -270,5 +311,6 @@ if (restoreButton) {
 if (isAdminLoggedIn()) {
   renderAdminProducts();
 }
+
 
 

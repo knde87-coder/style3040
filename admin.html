@@ -27,16 +27,37 @@
           <p id="admin-login-message" class="form-message">관리자 계정으로 로그인해주세요.</p>
         </form>
       </section>
+      </div>
     </main>
 
-    <main id="admin-app" class="page-shell admin-locked" hidden>
-      <div class="page-topbar">
-        <a href="/">비율좋은그사람</a>
-        <div class="page-actions"><a href="/product-list">상품목록</a><a href="/orders">주문관리</a><a href="/">홈</a><button id="admin-logout-button" class="admin-logout-button" type="button">로그아웃</button></div>
-      </div>
-      <p class="page-breadcrumb">HOME / ADMIN / PRODUCT MANAGER</p>
+    <main id="admin-app" class="admin-app-shell admin-locked" hidden>
+      <aside class="admin-sidebar">
+        <a class="admin-sidebar-brand" href="/admin">비율좋은그사람 ADMIN</a>
+        <nav class="admin-side-nav" aria-label="관리자 메뉴">
+          <a href="/admin" data-admin-section="dashboard">관리자 대시보드</a>
+          <a href="/admin/products" data-admin-section="products">상품 등록·수정·삭제</a>
+          <a href="/admin/categories" data-admin-section="categories">카테고리 관리</a>
+          <a href="/admin/inventory" data-admin-section="inventory">옵션·재고 관리</a>
+          <a href="/admin/orders" data-admin-section="orders">주문·배송 관리</a>
+          <a href="/admin/users" data-admin-section="users">회원 관리</a>
+          <a href="/admin/reviews" data-admin-section="reviews">리뷰·문의 관리</a>
+          <a href="/admin/banners" data-admin-section="banners">배너·공지 관리</a>
+          <a href="/admin/stats" data-admin-section="stats">매출·주문 통계</a>
+        </nav>
+        <a class="admin-store-link" href="/" target="_blank" rel="noreferrer">쇼핑몰 보기</a>
+        <button id="admin-logout-button" class="admin-logout-button" type="button">로그아웃</button>
+      </aside>
 
-      <section class="page-hero compact-page-hero admin-hero">
+      <div class="admin-workspace">
+      <div class="admin-workspace-topbar">
+        <div>
+          <p class="page-breadcrumb">HOME / ADMIN</p>
+          <h2 id="admin-current-title">관리자 대시보드</h2>
+        </div>
+        <span class="admin-role-badge">role: admin</span>
+      </div>
+
+      <section class="page-hero compact-page-hero admin-hero" data-admin-panel="dashboard">
         <div>
           <p class="section-label">GOODFORM ADMIN</p>
           <h1>남성복 상품 등록과 착장 이미지 관리</h1>
@@ -57,7 +78,43 @@
         <article><span>숨김</span><strong id="admin-hidden-count">0</strong></article>
       </section>
 
-      <section class="admin-layout" aria-label="상품 등록 폼">
+      <section class="admin-panel-card" data-admin-panel="categories">
+        <h2>카테고리 관리</h2>
+        <p>고객 화면의 남성복 탭 기준입니다. 신상, 베스트, 반팔/티셔츠, 카라/니트, 셔츠, 팬츠, 슬랙스, 데님, 아우터, 셋업, 슈즈, 액세서리, SALE 순서로 운영합니다.</p>
+      </section>
+
+      <section class="admin-panel-card" data-admin-panel="inventory">
+        <h2>옵션·재고 관리</h2>
+        <p>각 상품 수정 화면에서 색상, 사이즈, 판매중/품절/숨김 상태를 관리합니다.</p>
+      </section>
+
+      <section class="admin-panel-card" data-admin-panel="orders">
+        <h2>주문·배송 관리</h2>
+        <p>주문 내역은 주문관리 화면과 연결됩니다. Firebase 연결 후 전체 주문을 실시간으로 관리할 수 있게 확장됩니다.</p>
+        <a class="button secondary" href="/orders">주문관리 화면 열기</a>
+      </section>
+
+      <section class="admin-panel-card" data-admin-panel="users">
+        <h2>회원 관리</h2>
+        <p>Firebase Auth/Firestore 연결 후 회원 role(customer/admin/super_admin), 가입일, 주문 내역을 관리합니다.</p>
+      </section>
+
+      <section class="admin-panel-card" data-admin-panel="reviews">
+        <h2>리뷰·문의 관리</h2>
+        <p>상품 리뷰와 1:1 문의 답변 상태를 확인하는 관리자 영역입니다.</p>
+      </section>
+
+      <section class="admin-panel-card" data-admin-panel="banners">
+        <h2>배너·공지 관리</h2>
+        <p>상단 무료배송 문구, 메인 배너, 공지사항 노출을 관리하는 영역입니다.</p>
+      </section>
+
+      <section class="admin-panel-card" data-admin-panel="stats">
+        <h2>매출·주문 통계</h2>
+        <p>일별 주문 수, 매출, 인기 상품 통계를 볼 수 있는 영역입니다. 결제 연동 후 실제 수치로 확장합니다.</p>
+      </section>
+
+      <section class="admin-layout" data-admin-panel="products" aria-label="상품 등록 폼">
         <form id="admin-product-form" class="admin-form">
           <input name="id" type="hidden" />
           <label>
@@ -148,6 +205,7 @@
           <div id="admin-preview-list" class="admin-status-list"></div>
         </aside>
       </section>
+      </div>
     </main>
     <script src="firebase-config.js"></script>
     <script src="firebase-store.js"></script>
@@ -156,3 +214,4 @@
     <script src="integration-config.js"></script>
   </body>
 </html>
+
