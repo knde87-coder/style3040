@@ -1,4 +1,4 @@
-﻿import { copyFile, cp, mkdir } from "node:fs/promises";
+import { copyFile, cp, mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 
 const root = process.cwd();
@@ -10,7 +10,20 @@ const files = [
   "vercel.json",
   "firebase.json",
   "firestore.rules",
-  "storage.rules"
+  "storage.rules",
+  "admin.js",
+  "app.js",
+  "cart.js",
+  "catalog.js",
+  "checkout.js",
+  "detail.js",
+  "firebase-config.js",
+  "firebase-store.js",
+  "integration-config.js",
+  "orders.js",
+  "search.js",
+  "shop-data.js",
+  "sw.js"
 ];
 
 await mkdir(dist, { recursive: true });
