@@ -4,6 +4,13 @@ const adminPreview = document.getElementById("admin-preview-list");
 const imageInput = document.getElementById("product-image-input");
 const imagePreview = document.getElementById("upload-original-preview");
 const resetButton = document.getElementById("admin-reset-button");
+const restoreButton = document.getElementById("admin-restore-button");
+const statEls = {
+  total: document.getElementById("admin-total-count"),
+  active: document.getElementById("admin-active-count"),
+  soldout: document.getElementById("admin-soldout-count"),
+  hidden: document.getElementById("admin-hidden-count")
+};
 let pendingImageData = "";
 
 function splitValues(value) {
@@ -15,11 +22,23 @@ function setAdminMessage(text, tone = "success") {
   adminMessage.style.color = tone === "error" ? "#b42318" : "#0e5a52";
 }
 
+function getAdminProducts() {
+  return getGoodformProducts();
+}
+
+function updateStats(products) {
+  if (!statEls.total) return;
+  statEls.total.textContent = products.length;
+  statEls.active.textContent = products.filter((product) => product.stockStatus === "판매중").length;
+  statEls.soldout.textContent = products.filter((product) => product.stockStatus === "품절").length;
+  statEls.hidden.textContent = products.filter((product) => product.stockStatus === "숨김").length;
+}
+
 function fillForm(product) {
   adminForm.elements.id.value = product.id;
   adminForm.elements.name.value = product.name;
   adminForm.elements.price.value = product.priceText || formatGoodformPrice(product.price);
-  adminForm.elements.category.value = product.category || "상의";
+  adminForm.elements.category.value = product.category || "반팔/티셔츠";
   adminForm.elements.stockStatus.value = product.stockStatus || "판매중";
   adminForm.elements.aiStatus.value = product.aiStatus || "AI READY";
   adminForm.elements.colors.value = (product.colors || []).join(", ");
@@ -28,7 +47,8 @@ function fillForm(product) {
   adminForm.elements.summary.value = product.summary || "";
   pendingImageData = product.imageData || "";
   renderUploadPreview(product);
-  setAdminMessage("상품 정보를 불러왔습니다. 수정 후 저장하면 반영됩니다.");
+  setAdminMessage("상품 정보를 불러왔습니다. 수정 후 저장하면 바로 반영됩니다.");
+  adminForm.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function renderUploadPreview(product = {}) {
@@ -41,39 +61,82 @@ function renderUploadPreview(product = {}) {
 }
 
 function deleteProduct(id) {
-  const next = getGoodformProducts().filter((product) => product.id !== id);
+  const product = getGoodformProduct(id);
+  if (!window.confirm(`'${product.name}' 상품을 삭제할까요?`)) return;
+  const next = getAdminProducts().filter((item) => item.id !== id);
   saveGoodformProducts(next.length ? next : GOODFORM_DEFAULT_PRODUCTS);
   renderAdminProducts();
   setAdminMessage("상품을 삭제했습니다.");
 }
 
-async function getAdminProducts() {
-  const fb = await window.goodformFirebase?.ready;
-  if (fb?.enabled) {
-    const firebaseProducts = await fb.getProducts();
-    if (firebaseProducts?.length) return firebaseProducts;
-  }
-  return getGoodformProducts();
+function duplicateProduct(id) {
+  const product = getGoodformProduct(id);
+  const copy = {
+    ...product,
+    id: createGoodformId(`${product.name}-copy`),
+    name: `${product.name} 복사본`,
+    stockStatus: "숨김"
+  };
+  saveGoodformProducts([...getAdminProducts(), copy]);
+  renderAdminProducts();
+  fillForm(copy);
+  setAdminMessage("복사본을 만들었습니다. 수정 후 판매중으로 바꾸면 노출됩니다.");
 }
 
-async function renderAdminProducts() {
-  if (!adminPreview) return;
-  const products = getGoodformProducts();
-  adminPreview.innerHTML = products.map((product) => `
+function viewProduct(id) {
+  selectGoodformProduct(id);
+  window.open("/product-detail", "_blank", "noopener,noreferrer");
+}
+
+function resetForm() {
+  adminForm.reset();
+  adminForm.elements.id.value = "";
+  pendingImageData = "";
+  renderUploadPreview();
+  setAdminMessage("새 상품 입력 상태입니다.");
+}
+
+function restoreDefaults() {
+  if (!window.confirm("관리자에서 추가/수정한 상품을 초기 기본 상품으로 되돌릴까요?")) return;
+  saveGoodformProducts(GOODFORM_DEFAULT_PRODUCTS);
+  resetForm();
+  renderAdminProducts();
+  setAdminMessage("기본 상품 목록으로 복구했습니다.");
+}
+
+function productRow(product) {
+  const statusClass = product.stockStatus === "숨김" ? "muted" : product.stockStatus === "품절" ? "danger" : "active";
+  return `
     <div class="admin-product-row">
       <div>
         <strong>${product.name}</strong>
-        <span>${product.priceText || formatGoodformPrice(product.price)} · ${product.category} · ${product.stockStatus || "판매중"} · ${product.aiStatus || "AI READY"}</span>
+        <span>${product.priceText || formatGoodformPrice(product.price)} · ${product.category} · <b class="status-${statusClass}">${product.stockStatus || "판매중"}</b> · ${product.aiStatus || "AI READY"}</span>
+        <small>${product.summary || "목록 설명 없음"}</small>
       </div>
       <div class="admin-row-actions">
+        <button type="button" data-view-id="${product.id}">보기</button>
         <button type="button" data-edit-id="${product.id}">수정</button>
-        <button type="button" data-delete-id="${product.id}">삭제</button>
+        <button type="button" data-copy-id="${product.id}">복제</button>
+        <button type="button" data-delete-id="${product.id}" class="danger-button">삭제</button>
       </div>
     </div>
-  `).join("");
+  `;
+}
 
+function renderAdminProducts() {
+  if (!adminPreview) return;
+  const products = getAdminProducts();
+  updateStats(products);
+  adminPreview.innerHTML = products.length ? products.map(productRow).join("") : `<p class="empty-state">등록된 상품이 없습니다.</p>`;
+
+  adminPreview.querySelectorAll("[data-view-id]").forEach((button) => {
+    button.addEventListener("click", () => viewProduct(button.dataset.viewId));
+  });
   adminPreview.querySelectorAll("[data-edit-id]").forEach((button) => {
     button.addEventListener("click", () => fillForm(getGoodformProduct(button.dataset.editId)));
+  });
+  adminPreview.querySelectorAll("[data-copy-id]").forEach((button) => {
+    button.addEventListener("click", () => duplicateProduct(button.dataset.copyId));
   });
   adminPreview.querySelectorAll("[data-delete-id]").forEach((button) => {
     button.addEventListener("click", () => deleteProduct(button.dataset.deleteId));
@@ -98,9 +161,15 @@ if (adminForm) {
   adminForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const data = new FormData(adminForm);
-    const name = data.get("name");
+    const name = String(data.get("name") || "").trim();
     const price = Number(String(data.get("price")).replace(/[^0-9]/g, "")) || 0;
-    const products = getGoodformProducts();
+
+    if (!name || !price) {
+      setAdminMessage("상품명과 판매가는 반드시 입력해야 합니다.", "error");
+      return;
+    }
+
+    const products = getAdminProducts();
     const existingId = data.get("id");
     const product = {
       id: existingId || createGoodformId(name),
@@ -110,7 +179,7 @@ if (adminForm) {
       aiStatus: data.get("aiStatus"),
       price,
       priceText: formatGoodformPrice(price),
-      summary: data.get("summary") || "AI 모델 착장으로 확인하는 신상품",
+      summary: data.get("summary") || "핏과 비율을 살리는 남성 데일리웨어",
       description: data.get("description"),
       colors: splitValues(data.get("colors")),
       sizes: splitValues(data.get("sizes")),
@@ -118,6 +187,7 @@ if (adminForm) {
       imageData: pendingImageData,
       fit: { 어깨: "CLEAN", 가슴: "REGULAR", 밑단: "SOFT", 기장: "STANDARD" }
     };
+
     const next = existingId ? products.map((item) => item.id === existingId ? product : item) : [...products, product];
     saveGoodformProducts(next);
     selectGoodformProduct(product.id);
@@ -127,16 +197,11 @@ if (adminForm) {
 }
 
 if (resetButton) {
-  resetButton.addEventListener("click", () => {
-    adminForm.reset();
-    adminForm.elements.id.value = "";
-    pendingImageData = "";
-    renderUploadPreview();
-    setAdminMessage("새 상품 입력 상태입니다.");
-  });
+  resetButton.addEventListener("click", resetForm);
+}
+
+if (restoreButton) {
+  restoreButton.addEventListener("click", restoreDefaults);
 }
 
 renderAdminProducts();
-
-
-

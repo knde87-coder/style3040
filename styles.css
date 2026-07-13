@@ -1438,3 +1438,85 @@ main,
     min-height: 280px;
   }
 }
+
+.admin-dashboard {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.admin-dashboard article {
+  padding: 22px;
+  border: 1px solid rgba(215, 221, 215, 0.95);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: var(--shadow);
+}
+
+.admin-dashboard span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.admin-dashboard strong {
+  color: var(--brand);
+  font-size: 2rem;
+}
+
+.admin-list-head {
+  padding: 22px 24px 0;
+  border: 1px solid rgba(215, 221, 215, 0.9);
+  border-bottom: 0;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.admin-list-head strong {
+  display: block;
+  color: var(--brand);
+  font-size: 1.2rem;
+}
+
+.admin-list-head p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.admin-product-row small {
+  display: block;
+  margin-top: 8px;
+  color: #52615b;
+  line-height: 1.6;
+}
+
+.status-active {
+  color: var(--brand);
+}
+
+.status-danger {
+  color: #b42318;
+}
+
+.status-muted {
+  color: var(--muted);
+}
+
+.admin-row-actions .danger-button {
+  border-color: rgba(180, 35, 24, 0.25);
+  color: #b42318;
+}
+
+@media (max-width: 1080px) {
+  .admin-dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .admin-dashboard {
+    grid-template-columns: 1fr;
+  }
+}
