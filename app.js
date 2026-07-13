@@ -42,6 +42,10 @@ function hasFirebaseConfig(config) {
 }
 
 function setMessage(text, tone = "default") {
+  if (!message) {
+    return;
+  }
+
   message.textContent = text;
   message.style.color = tone === "error" ? "#b42318" : tone === "success" ? "#0e5a52" : "#46534d";
 }
@@ -158,9 +162,25 @@ function registerServiceWorker() {
   });
 }
 
+function getProviderLabel(providerName) {
+  return providerName === "kakao" ? "카카오톡" : "네이버";
+}
+
+function showSocialSetupRequired(providerName) {
+  const label = getProviderLabel(providerName);
+  const guideText = `${label} 연동을 시작하려면 Firebase 설정값과 ${label} OAuth 제공자 설정이 필요합니다. 현재는 버튼 동작 확인 단계이며, 키를 넣으면 바로 로그인 팝업이 열립니다.`;
+
+  setMessage(guideText, "error");
+  if (socialGuide) {
+    socialGuide.textContent = guideText;
+  }
+}
+
 async function handleSocialLogin(providerName) {
+  const label = getProviderLabel(providerName);
+
   if (!auth || !db) {
-    setMessage("아직 소셜 로그인 연결이 완료되지 않았습니다.", "error");
+    showSocialSetupRequired(providerName);
     return;
   }
 
@@ -168,12 +188,16 @@ async function handleSocialLogin(providerName) {
   const providerId = providerName === "kakao" ? providerConfig.kakaoProviderId : providerConfig.naverProviderId;
 
   if (!providerId || providerId.startsWith("REPLACE_WITH_")) {
-    setMessage(`${providerName === "kakao" ? "카카오" : "네이버"} 제공자 ID 설정이 아직 비어 있습니다.`, "error");
+    showSocialSetupRequired(providerName);
     return;
   }
 
   try {
+    setMessage(`${label} 로그인 창을 여는 중입니다.`);
     const provider = new OAuthProvider(providerId);
+    provider.addScope("profile");
+    provider.addScope("email");
+
     const result = await signInWithPopup(auth, provider);
     await saveUserProfile(result.user, {
       name: result.user.displayName || "",
@@ -181,9 +205,10 @@ async function handleSocialLogin(providerName) {
       provider: providerName,
       marketingAccepted: false
     });
-    setMessage(`${providerName === "kakao" ? "카카오" : "네이버"} 로그인에 성공했고 회원정보가 저장되었습니다.`, "success");
+    setMessage(`${label} 로그인에 성공했고 회원정보가 저장되었습니다.`, "success");
   } catch (error) {
-    setMessage(error.message || "소셜 로그인 처리 중 오류가 발생했습니다.", "error");
+    const fallback = error?.code === "auth/popup-closed-by-user" ? `${label} 로그인 창이 닫혔습니다. 다시 시도해주세요.` : `${label} 로그인 처리 중 오류가 발생했습니다.`;
+    setMessage(error?.message || fallback, "error");
   }
 }
 
@@ -192,6 +217,7 @@ toggleButtons.forEach((button) => {
 });
 
 if (kakaoLoginButton) {
+  kakaoLoginButton.disabled = false;
   kakaoLoginButton.addEventListener("click", () => handleSocialLogin("kakao"));
 }
 
@@ -240,6 +266,7 @@ logoutButton.addEventListener("click", async () => {
 setMode("signup");
 initFirebase();
 registerServiceWorker();
+
 
 
 
