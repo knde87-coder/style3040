@@ -120,7 +120,9 @@ function deleteProduct(id) {
   if (!window.confirm(`'${product.name}' 상품을 삭제할까요?`)) return;
   const next = getAdminProducts().filter((item) => item.id !== id);
   saveGoodformProducts(next.length ? next : GOODFORM_DEFAULT_PRODUCTS);
-  if (isAdminLoggedIn()) {`n  renderAdminProducts();`n}
+  if (isAdminLoggedIn()) {
+  renderAdminProducts();
+}
   setAdminMessage("상품을 삭제했습니다.");
 }
 
@@ -133,7 +135,9 @@ function duplicateProduct(id) {
     stockStatus: "숨김"
   };
   saveGoodformProducts([...getAdminProducts(), copy]);
-  if (isAdminLoggedIn()) {`n  renderAdminProducts();`n}
+  if (isAdminLoggedIn()) {
+  renderAdminProducts();
+}
   fillForm(copy);
   setAdminMessage("복사본을 만들었습니다. 수정 후 판매중으로 바꾸면 노출됩니다.");
 }
@@ -155,7 +159,9 @@ function restoreDefaults() {
   if (!window.confirm("관리자에서 추가/수정한 상품을 초기 기본 상품으로 되돌릴까요?")) return;
   saveGoodformProducts(GOODFORM_DEFAULT_PRODUCTS);
   resetForm();
-  if (isAdminLoggedIn()) {`n  renderAdminProducts();`n}
+  if (isAdminLoggedIn()) {
+  renderAdminProducts();
+}
   setAdminMessage("기본 상품 목록으로 복구했습니다.");
 }
 
@@ -247,7 +253,9 @@ if (adminForm) {
     saveGoodformProducts(next);
     selectGoodformProduct(product.id);
     setAdminMessage(existingId ? "상품 수정이 완료됐습니다." : "상품이 저장됐습니다. 상품목록과 상세페이지에서 바로 확인할 수 있습니다.");
-    if (isAdminLoggedIn()) {`n  renderAdminProducts();`n}
+    if (isAdminLoggedIn()) {
+  renderAdminProducts();
+}
   });
 }
 
@@ -259,5 +267,8 @@ if (restoreButton) {
   restoreButton.addEventListener("click", restoreDefaults);
 }
 
-if (isAdminLoggedIn()) {`n  renderAdminProducts();`n}
+if (isAdminLoggedIn()) {
+  renderAdminProducts();
+}
+
 
