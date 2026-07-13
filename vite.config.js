@@ -26,8 +26,15 @@ function cleanUrlDevPlugin() {
   return {
     name: "goodform-clean-url-dev",
     configureServer(server) {
-      server.middlewares.use((req, res, next) => {
+      server.middlewares.use(async (req, res, next) => {
         const url = (req.url || "").split("?")[0];
+
+        if (url === "/styles.css") {
+          res.setHeader("Content-Type", "text/css; charset=utf-8");
+          res.end(readFileSync(resolve(rootDir, "styles.css"), "utf8"));
+          return;
+        }
+
         const target = cleanRoutes[url];
 
         if (!target) {
@@ -41,8 +48,9 @@ function cleanUrlDevPlugin() {
           return;
         }
 
+        const html = await server.transformIndexHtml(url, readFileSync(filePath, "utf8"));
         res.setHeader("Content-Type", "text/html; charset=utf-8");
-        res.end(readFileSync(filePath, "utf8"));
+        res.end(html);
       });
     }
   };
@@ -68,4 +76,6 @@ export default defineConfig({
     }
   }
 });
+
+
 
