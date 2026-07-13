@@ -1,6 +1,7 @@
 ﻿User-agent: *
 Allow: /
 
-Sitemap: https://www.goodform.co.kr/sitemap.xml
+Sitemap: https://goodform-five.vercel.app/sitemap.xml
+
 
 

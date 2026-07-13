@@ -1,5 +1,5 @@
 ﻿window.__GOODFORM_INTEGRATIONS__ = {
-  siteUrl: "https://www.goodform.co.kr",
+  siteUrl: "https://goodform-five.vercel.app",
   youtubeUrl: "https://www.youtube.com/@goodform",
   payment: {
     provider: "toss",
@@ -18,5 +18,6 @@
     buckets: ["product-originals", "ai-model-cuts"]
   }
 };
+
 
 
