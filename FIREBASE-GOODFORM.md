@@ -12,6 +12,33 @@
 6. Storage 생성
 7. Rules 탭에 `firestore.rules`, `storage.rules` 내용 반영
 
+## 로컬에서 배포할 때
+
+Firebase CLI가 없다면 먼저 설치합니다.
+
+```powershell
+npm install -g firebase-tools
+```
+
+로그인과 프로젝트 연결:
+
+```powershell
+npm run firebase:login
+npm run firebase:use
+```
+
+전체 배포:
+
+```powershell
+npm run firebase:deploy
+```
+
+규칙만 배포:
+
+```powershell
+npm run firebase:deploy:rules
+```
+
 ## 연결 후 동작
 
 - 회원가입/로그인: Firebase Authentication + Firestore `users`

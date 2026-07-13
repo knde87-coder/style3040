@@ -154,3 +154,5 @@ function saveGoodformOrder(order) {
 function goodformImageStyle(item) {
   return item?.imageData ? `style="background-image: linear-gradient(180deg, rgba(20,20,20,0.02), rgba(20,20,20,0.34)), url('${item.imageData}')"` : "";
 }
+
+

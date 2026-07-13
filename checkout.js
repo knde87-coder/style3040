@@ -51,3 +51,5 @@ checkoutForm.addEventListener("submit", async (event) => {
 });
 
 renderCheckout();
+
+

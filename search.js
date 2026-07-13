@@ -31,3 +31,5 @@ document.querySelectorAll("[data-search-chip]").forEach((button) => {
   });
 });
 renderSearch();
+
+
