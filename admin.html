@@ -7,11 +7,32 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="top-banner">goodform-five.vercel.app 상품 운영 화면</div>
-    <main class="page-shell">
+    <div class="top-banner">비율좋은그사람 관리자 전용 화면</div>
+
+    <main id="admin-login-screen" class="admin-login-shell">
+      <section class="admin-login-card">
+        <p class="section-label">GOODFORM ADMIN</p>
+        <h1>관리자 로그인</h1>
+        <p>상품 추가, 수정, 삭제는 관리자 로그인 후에만 사용할 수 있습니다.</p>
+        <form id="admin-login-form" class="admin-login-form">
+          <label>
+            <span>관리자 아이디</span>
+            <input id="admin-login-id" type="text" autocomplete="username" required />
+          </label>
+          <label>
+            <span>비밀번호</span>
+            <input id="admin-login-password" type="password" autocomplete="current-password" required />
+          </label>
+          <button class="button primary" type="submit">관리자 로그인</button>
+          <p id="admin-login-message" class="form-message">관리자 계정으로 로그인해주세요.</p>
+        </form>
+      </section>
+    </main>
+
+    <main id="admin-app" class="page-shell admin-locked" hidden>
       <div class="page-topbar">
         <a href="/">비율좋은그사람</a>
-        <div class="page-actions"><a href="/product-list">상품목록</a><a href="/orders">주문관리</a><a href="/">홈</a></div>
+        <div class="page-actions"><a href="/product-list">상품목록</a><a href="/orders">주문관리</a><a href="/">홈</a><button id="admin-logout-button" class="admin-logout-button" type="button">로그아웃</button></div>
       </div>
       <p class="page-breadcrumb">HOME / ADMIN / PRODUCT MANAGER</p>
 
@@ -22,11 +43,18 @@
           <p>상의, 팬츠, 셔츠, 아우터 상품 정보와 착장 이미지를 함께 관리하고 저장 즉시 상품목록과 상세페이지에 반영합니다.</p>
         </div>
         <div class="filter-chip-row">
-          <span class="filter-chip active">상품등록</span>
-          <span class="filter-chip">이미지 업로드</span>
-          <span class="filter-chip">AI 착장 상태</span>
-          <span class="filter-chip">수정/삭제</span>
+          <span class="filter-chip active">상품 추가</span>
+          <span class="filter-chip">상품 수정</span>
+          <span class="filter-chip">상품 삭제</span>
+          <span class="filter-chip">노출 관리</span>
         </div>
+      </section>
+
+      <section class="admin-dashboard" aria-label="상품 운영 현황">
+        <article><span>전체 상품</span><strong id="admin-total-count">0</strong></article>
+        <article><span>판매중</span><strong id="admin-active-count">0</strong></article>
+        <article><span>품절</span><strong id="admin-soldout-count">0</strong></article>
+        <article><span>숨김</span><strong id="admin-hidden-count">0</strong></article>
       </section>
 
       <section class="admin-layout" aria-label="상품 등록 폼">
@@ -43,9 +71,15 @@
           <label>
             <span>카테고리</span>
             <select name="category">
-              <option>상의</option>
+              <option>반팔/티셔츠</option>
+              <option>카라/니트</option>
+              <option>셔츠</option>
               <option>팬츠</option>
+              <option>슬랙스</option>
+              <option>데님</option>
+              <option>아우터</option>
               <option>셋업</option>
+              <option>슈즈</option>
               <option>액세서리</option>
             </select>
           </label>
@@ -58,16 +92,16 @@
             </select>
           </label>
           <label>
-            <span>AI 모델 컷 상태</span>
+            <span>착장 이미지 상태</span>
             <select name="aiStatus">
-              <option>AI READY</option>
-              <option>AI MODEL</option>
-              <option>AI 제작중</option>
+              <option>촬영 완료</option>
+              <option>AI 모델컷</option>
+              <option>제작중</option>
               <option>원본만 등록</option>
             </select>
           </label>
           <label>
-            <span>상품 원본/AI 모델 이미지</span>
+            <span>상품 이미지</span>
             <input id="product-image-input" name="image" type="file" accept="image/*" />
           </label>
           <label>
@@ -88,23 +122,30 @@
           </label>
           <div class="admin-button-row">
             <button class="button primary" type="submit">상품 저장하기</button>
-            <button id="admin-reset-button" class="button secondary" type="button">새 상품 입력</button>\n            <button id="admin-restore-button" class="button secondary" type="button">기본 상품 복구</button>
+            <button id="admin-reset-button" class="button secondary" type="button">새 상품 입력</button>
+            <button id="admin-restore-button" class="button secondary" type="button">기본 상품 복구</button>
           </div>
           <p id="admin-message" class="form-message">저장하면 상품목록과 상세페이지에 바로 반영됩니다.</p>
         </form>
 
         <aside class="upload-preview">
           <div id="upload-original-preview" class="upload-box">
-            <span>ORIGINAL CLOTH PHOTO</span>
-            <strong>옷 원본 사진</strong>
-            <p>상품 단독 컷 또는 AI 모델 착장 이미지를 업로드합니다.</p>
+            <span>PRODUCT PHOTO</span>
+            <strong>상품 이미지</strong>
+            <p>상품 단독 컷 또는 모델 착장 이미지를 업로드합니다.</p>
           </div>
           <div class="upload-box ai-ready">
-            <span>AI MODEL CUT</span>
-            <strong>AI 모델 착장 컷</strong>
+            <span>MODEL CUT</span>
+            <strong>착장 이미지 상태</strong>
             <p>정면, 측면, 전신 컷 상태를 상품별로 관리합니다.</p>
           </div>
-          <div class="admin-list-head">\n            <div>\n              <strong>등록 상품 목록</strong>\n              <p>수정, 복제, 삭제 후 상품목록과 상세페이지에서 바로 확인할 수 있습니다.</p>\n            </div>\n          </div>\n          <div id="admin-preview-list" class="admin-status-list"></div>
+          <div class="admin-list-head">
+            <div>
+              <strong>등록 상품 목록</strong>
+              <p>수정, 복제, 삭제 후 상품목록과 상세페이지에서 바로 확인할 수 있습니다.</p>
+            </div>
+          </div>
+          <div id="admin-preview-list" class="admin-status-list"></div>
         </aside>
       </section>
     </main>
@@ -112,15 +153,6 @@
     <script src="firebase-store.js"></script>
     <script src="shop-data.js"></script>
     <script src="admin.js"></script>
-      <script src="integration-config.js"></script>
+    <script src="integration-config.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-

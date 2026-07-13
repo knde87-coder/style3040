@@ -1,4 +1,59 @@
-﻿const adminForm = document.getElementById("admin-product-form");
+﻿const ADMIN_AUTH_KEY = "goodform.admin.authenticated";
+const adminLoginScreen = document.getElementById("admin-login-screen");
+const adminApp = document.getElementById("admin-app");
+const adminLoginForm = document.getElementById("admin-login-form");
+const adminLoginId = document.getElementById("admin-login-id");
+const adminLoginPassword = document.getElementById("admin-login-password");
+const adminLoginMessage = document.getElementById("admin-login-message");
+const adminLogoutButton = document.getElementById("admin-logout-button");
+
+function setAdminLoggedIn(value) {
+  sessionStorage.setItem(ADMIN_AUTH_KEY, value ? "true" : "false");
+  if (adminLoginScreen) adminLoginScreen.hidden = value;
+  if (adminApp) adminApp.hidden = !value;
+}
+
+function isAdminLoggedIn() {
+  return sessionStorage.getItem(ADMIN_AUTH_KEY) === "true";
+}
+
+if (adminLoginForm) {
+  adminLoginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    adminLoginMessage.textContent = "로그인 확인 중입니다.";
+    adminLoginMessage.style.color = "#46534d";
+
+    try {
+      const result = await fetch("/api/admin-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ adminId: adminLoginId.value.trim(), password: adminLoginPassword.value })
+      });
+
+      if (!result.ok) {
+        throw new Error("LOGIN_FAILED");
+      }
+
+      setAdminLoggedIn(true);
+      adminLoginPassword.value = "";
+      renderAdminProducts();
+    } catch {
+      adminLoginMessage.textContent = "관리자 아이디 또는 비밀번호가 맞지 않습니다.";
+      adminLoginMessage.style.color = "#b42318";
+      adminLoginPassword.value = "";
+    }
+  });
+}
+
+if (adminLogoutButton) {
+  adminLogoutButton.addEventListener("click", () => {
+    sessionStorage.removeItem(ADMIN_AUTH_KEY);
+    setAdminLoggedIn(false);
+  });
+}
+
+setAdminLoggedIn(isAdminLoggedIn());
+const adminForm = document.getElementById("admin-product-form");
 const adminMessage = document.getElementById("admin-message");
 const adminPreview = document.getElementById("admin-preview-list");
 const imageInput = document.getElementById("product-image-input");
@@ -65,7 +120,7 @@ function deleteProduct(id) {
   if (!window.confirm(`'${product.name}' 상품을 삭제할까요?`)) return;
   const next = getAdminProducts().filter((item) => item.id !== id);
   saveGoodformProducts(next.length ? next : GOODFORM_DEFAULT_PRODUCTS);
-  renderAdminProducts();
+  if (isAdminLoggedIn()) {`n  renderAdminProducts();`n}
   setAdminMessage("상품을 삭제했습니다.");
 }
 
@@ -78,7 +133,7 @@ function duplicateProduct(id) {
     stockStatus: "숨김"
   };
   saveGoodformProducts([...getAdminProducts(), copy]);
-  renderAdminProducts();
+  if (isAdminLoggedIn()) {`n  renderAdminProducts();`n}
   fillForm(copy);
   setAdminMessage("복사본을 만들었습니다. 수정 후 판매중으로 바꾸면 노출됩니다.");
 }
@@ -100,7 +155,7 @@ function restoreDefaults() {
   if (!window.confirm("관리자에서 추가/수정한 상품을 초기 기본 상품으로 되돌릴까요?")) return;
   saveGoodformProducts(GOODFORM_DEFAULT_PRODUCTS);
   resetForm();
-  renderAdminProducts();
+  if (isAdminLoggedIn()) {`n  renderAdminProducts();`n}
   setAdminMessage("기본 상품 목록으로 복구했습니다.");
 }
 
@@ -192,7 +247,7 @@ if (adminForm) {
     saveGoodformProducts(next);
     selectGoodformProduct(product.id);
     setAdminMessage(existingId ? "상품 수정이 완료됐습니다." : "상품이 저장됐습니다. 상품목록과 상세페이지에서 바로 확인할 수 있습니다.");
-    renderAdminProducts();
+    if (isAdminLoggedIn()) {`n  renderAdminProducts();`n}
   });
 }
 
@@ -204,4 +259,5 @@ if (restoreButton) {
   restoreButton.addEventListener("click", restoreDefaults);
 }
 
-renderAdminProducts();
+if (isAdminLoggedIn()) {`n  renderAdminProducts();`n}
+
