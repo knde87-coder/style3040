@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품목록 | 비율좋은그사람</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="top-banner">신규 회원 전 상품 무료배송</div>
+    <main class="page-shell">
+      <div class="page-topbar">
+        <a href="index.html">비율좋은그사람</a>
+        <div class="page-actions"><a href="search.html">검색</a><a href="cart.html">장바구니</a></div>
+      </div>
+      <p class="page-breadcrumb">HOME / SHOP / BEST</p>
+      <section class="page-hero compact-page-hero">
+        <div>
+          <p class="section-label">PRODUCT LIST</p>
+          <h1>AI 모델 착장으로 확인하는 베스트 상품</h1>
+          <p>가장 반응이 좋은 상품을 AI 모델 착장 컷 기준으로 한눈에 비교할 수 있도록 정리했습니다.</p>
+        </div>
+        <div class="filter-chip-row">
+          <span class="filter-chip active">전체</span>
+          <span class="filter-chip">상의</span>
+          <span class="filter-chip">하의</span>
+          <span class="filter-chip">신상</span>
+          <span class="filter-chip">인기순</span><span class="filter-chip">AI 착장</span>
+        </div>
+      </section>
+      <section id="catalog-grid" class="product-list-grid catalog-grid" aria-label="상품 목록"></section>
+    </main>
+      <script src="firebase-config.js"></script>
+    <script src="firebase-store.js"></script>
+    <script src="shop-data.js"></script>
+    <script src="catalog.js"></script>
+      <script src="integration-config.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+

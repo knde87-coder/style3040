@@ -1,0 +1,27 @@
+﻿{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "rewrites": [
+      { "source": "/product-list", "destination": "/product-list.html" },
+      { "source": "/product-detail", "destination": "/product-detail.html" },
+      { "source": "/cart", "destination": "/cart.html" },
+      { "source": "/checkout", "destination": "/checkout.html" },
+      { "source": "/orders", "destination": "/orders.html" },
+      { "source": "/search", "destination": "/search.html" },
+      { "source": "/admin", "destination": "/admin.html" }
+    ]
+  }
+}

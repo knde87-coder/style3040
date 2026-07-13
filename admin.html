@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품등록 | 비율좋은그사람</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="top-banner">www.goodform.co.kr 상품 운영 화면</div>
+    <main class="page-shell">
+      <div class="page-topbar">
+        <a href="index.html">비율좋은그사람</a>
+        <div class="page-actions"><a href="product-list.html">상품목록</a><a href="orders.html">주문관리</a><a href="index.html">홈</a></div>
+      </div>
+      <p class="page-breadcrumb">HOME / ADMIN / PRODUCT UPLOAD</p>
+
+      <section class="page-hero compact-page-hero admin-hero">
+        <div>
+          <p class="section-label">AI PRODUCT UPLOAD</p>
+          <h1>상품 등록, 수정, AI 모델 컷 상태 관리</h1>
+          <p>옷 원본 사진과 AI 모델 착장 컷 준비 상태를 함께 관리하고, 저장 즉시 상품목록과 상세페이지에 반영합니다.</p>
+        </div>
+        <div class="filter-chip-row">
+          <span class="filter-chip active">상품등록</span>
+          <span class="filter-chip">이미지 업로드</span>
+          <span class="filter-chip">AI 착장 상태</span>
+          <span class="filter-chip">수정/삭제</span>
+        </div>
+      </section>
+
+      <section class="admin-layout" aria-label="상품 등록 폼">
+        <form id="admin-product-form" class="admin-form">
+          <input name="id" type="hidden" />
+          <label>
+            <span>상품명</span>
+            <input name="name" type="text" value="소프트 오픈카라 니트" required />
+          </label>
+          <label>
+            <span>판매가</span>
+            <input name="price" type="text" value="39,800원" required />
+          </label>
+          <label>
+            <span>카테고리</span>
+            <select name="category">
+              <option>상의</option>
+              <option>팬츠</option>
+              <option>셋업</option>
+              <option>액세서리</option>
+            </select>
+          </label>
+          <label>
+            <span>재고 상태</span>
+            <select name="stockStatus">
+              <option>판매중</option>
+              <option>품절</option>
+              <option>숨김</option>
+            </select>
+          </label>
+          <label>
+            <span>AI 모델 컷 상태</span>
+            <select name="aiStatus">
+              <option>AI READY</option>
+              <option>AI MODEL</option>
+              <option>AI 제작중</option>
+              <option>원본만 등록</option>
+            </select>
+          </label>
+          <label>
+            <span>상품 원본/AI 모델 이미지</span>
+            <input id="product-image-input" name="image" type="file" accept="image/*" />
+          </label>
+          <label>
+            <span>색상</span>
+            <input name="colors" type="text" value="아이보리, 그레이, 블랙" />
+          </label>
+          <label>
+            <span>사이즈</span>
+            <input name="sizes" type="text" value="M, L, XL" />
+          </label>
+          <label>
+            <span>상품 설명</span>
+            <textarea name="description" rows="6">청초하고 깔끔한 분위기의 데일리 니트. AI 모델 착장 컷으로 실제 기장과 어깨선을 함께 보여줍니다.</textarea>
+          </label>
+          <label>
+            <span>목록 한줄 설명</span>
+            <input name="summary" type="text" value="청초한 분위기의 데일리 니트" />
+          </label>
+          <div class="admin-button-row">
+            <button class="button primary" type="submit">상품 저장하기</button>
+            <button id="admin-reset-button" class="button secondary" type="button">새 상품 입력</button>
+          </div>
+          <p id="admin-message" class="form-message">저장하면 상품목록과 상세페이지에 바로 반영됩니다.</p>
+        </form>
+
+        <aside class="upload-preview">
+          <div id="upload-original-preview" class="upload-box">
+            <span>ORIGINAL CLOTH PHOTO</span>
+            <strong>옷 원본 사진</strong>
+            <p>상품 단독 컷 또는 AI 모델 착장 이미지를 업로드합니다.</p>
+          </div>
+          <div class="upload-box ai-ready">
+            <span>AI MODEL CUT</span>
+            <strong>AI 모델 착장 컷</strong>
+            <p>정면, 측면, 전신 컷 상태를 상품별로 관리합니다.</p>
+          </div>
+          <div id="admin-preview-list" class="admin-status-list"></div>
+        </aside>
+      </section>
+    </main>
+    <script src="firebase-config.js"></script>
+    <script src="firebase-store.js"></script>
+    <script src="shop-data.js"></script>
+    <script src="admin.js"></script>
+      <script src="integration-config.js"></script>
+  </body>
+</html>
+
+

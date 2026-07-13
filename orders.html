@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>주문관리 | 비율좋은그사람</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="top-banner">비율좋은그사람 주문관리</div>
+    <main class="page-shell">
+      <div class="page-topbar">
+        <a href="index.html">비율좋은그사람</a>
+        <div class="page-actions"><a href="admin.html">상품등록</a><a href="product-list.html">상품목록</a></div>
+      </div>
+      <p class="page-breadcrumb">HOME / ADMIN / ORDERS</p>
+      <section class="page-hero compact-page-hero">
+        <div>
+          <p class="section-label">ORDER ADMIN</p>
+          <h1>주문 저장 내역</h1>
+          <p>결제 연동 전 단계에서 주문자, 배송지, 상품 내역을 먼저 확인하는 운영 화면입니다.</p>
+        </div>
+      </section>
+      <section id="orders-list" class="orders-list"></section>
+    </main>
+    <script src="firebase-config.js"></script>
+    <script src="firebase-store.js"></script>
+    <script src="shop-data.js"></script>
+    <script src="orders.js"></script>
+      <script src="integration-config.js"></script>
+  </body>
+</html>
+
+
