@@ -10,11 +10,20 @@ const CATEGORY_MATCHERS = {
 
 async function getCatalogProducts() {
   const fb = await window.goodformFirebase?.ready;
+  const localProducts = getGoodformProducts();
+  const source = [];
+  if (Array.isArray(GOODFORM_CATEGORY_SHOWCASE_PRODUCTS)) source.push(...GOODFORM_CATEGORY_SHOWCASE_PRODUCTS);
+  if (Array.isArray(localProducts)) source.push(...localProducts);
   if (fb?.enabled) {
     const firebaseProducts = await fb.getProducts();
-    if (firebaseProducts?.length) return firebaseProducts;
+    if (firebaseProducts?.length) source.push(...firebaseProducts);
   }
-  return getGoodformProducts();
+  const seen = new Set();
+  return source.filter((product) => {
+    if (!product?.id || seen.has(product.id)) return false;
+    seen.add(product.id);
+    return true;
+  });
 }
 
 function getCurrentCategory() {
@@ -31,7 +40,7 @@ function matchesCategory(product, category) {
 function visibleProductsForCategory(products, category) {
   const visible = products.filter((product) => product.stockStatus !== "숨김");
   const matched = visible.filter((product) => matchesCategory(product, category));
-  return matched.length ? matched : visible.slice(0, 6);
+  return matched.length ? matched.slice(0, 8) : visible.slice(0, 8);
 }
 
 function categoryProductCard(product, index) {
@@ -83,3 +92,4 @@ async function renderCatalog() {
 }
 
 renderCatalog();
+

@@ -1863,3 +1863,22 @@ main,
   .delivery-truck-icon { transform: scale(.82); margin-bottom: 8px; }
   .delivery-detail-grid p { font-weight: 600; }
 }
+
+/* Top and bottom category showcase imagery */
+.top-showcase-01 { background-image: url("https://images.unsplash.com/photo-1602810319428-019690571b5b?auto=format&fit=crop&w=900&q=85"); }
+.top-showcase-02 { background-image: url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85"); }
+.top-showcase-03 { background-image: url("https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=85"); }
+.top-showcase-04 { background-image: url("https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=900&q=85"); }
+.top-showcase-05 { background-image: url("https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=900&q=85"); }
+.top-showcase-06 { background-image: url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=85"); }
+.top-showcase-07 { background-image: url("https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?auto=format&fit=crop&w=900&q=85"); }
+.top-showcase-08 { background-image: url("https://images.unsplash.com/photo-1520975682031-a5b1a772ce8f?auto=format&fit=crop&w=900&q=85"); }
+.bottom-showcase-01 { background-image: url("https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=900&q=85"); }
+.bottom-showcase-02 { background-image: url("https://images.unsplash.com/photo-1506629905607-d9f297d4f5f5?auto=format&fit=crop&w=900&q=85"); }
+.bottom-showcase-03 { background-image: url("https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=900&q=85"); }
+.bottom-showcase-04 { background-image: url("https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=900&q=85"); }
+.bottom-showcase-05 { background-image: url("https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=900&q=85"); }
+.bottom-showcase-06 { background-image: url("https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=85"); }
+.bottom-showcase-07 { background-image: url("https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=900&q=85"); }
+.bottom-showcase-08 { background-image: url("https://images.unsplash.com/photo-1517438476312-10d79c077509?auto=format&fit=crop&w=900&q=85"); }
+.category-product-image, .category-featured-image { background-size: cover; background-position: center; }

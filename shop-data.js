@@ -248,6 +248,24 @@ const GOODFORM_DEFAULT_PRODUCTS = [
   }
 ];
 
+const GOODFORM_CATEGORY_SHOWCASE_PRODUCTS = [
+  { id: "top-linen-henley-7584", name: "7584_마코르 헨리넥 셔츠", category: "상의", price: 39000, priceText: "39,000원", comparePriceText: "89,000원", summary: "차분한 린넨 헨리넥", description: "가볍고 담백한 린넨 텍스처로 여름 데일리룩에 잘 맞는 헨리넥 셔츠입니다.", colors: ["베이지", "화이트"], sizes: ["M", "L", "XL"], imageClass: "top-showcase-01", fit: { 어깨: "REGULAR", 가슴: "RELAXED", 총장: "STANDARD", 무드: "CLEAN" }, aiStatus: "BEST", stockStatus: "판매중" },
+  { id: "top-soft-henley-6953", name: "6953_스무디 반팔티", category: "상의", price: 29000, priceText: "29,000원", comparePriceText: "55,000원", summary: "쫀쫀한 블랙 반팔", description: "몸선을 과하게 드러내지 않고 깔끔하게 잡아주는 데일리 반팔티입니다.", colors: ["블랙", "화이트"], sizes: ["M", "L", "XL"], imageClass: "top-showcase-02", fit: { 어깨: "REGULAR", 가슴: "CLEAN", 총장: "STANDARD", 무드: "MINIMAL" }, aiStatus: "SALE", stockStatus: "판매중" },
+  { id: "top-white-shirt-7129", name: "7129_린넨 셔츠", category: "상의", price: 29000, priceText: "29,000원", comparePriceText: "59,000원", summary: "깔끔한 화이트 셔츠", description: "가벼운 소재와 여유 있는 실루엣으로 여름에도 산뜻하게 입기 좋은 셔츠입니다.", colors: ["화이트", "스카이"], sizes: ["M", "L", "XL"], imageClass: "top-showcase-03", fit: { 어깨: "RELAXED", 가슴: "SOFT", 총장: "STANDARD", 무드: "FRESH" }, aiStatus: "BEST", stockStatus: "판매중" },
+  { id: "top-surfing-tee-7518", name: "7518_서핑 반팔티셔츠", category: "상의", price: 34000, priceText: "34,000원", comparePriceText: "70,000원", summary: "후면 그래픽 포인트", description: "후면 그래픽으로 단품 포인트가 확실한 여름 반팔 티셔츠입니다.", colors: ["화이트", "멜란지"], sizes: ["M", "L", "XL"], imageClass: "top-showcase-04", fit: { 어깨: "REGULAR", 가슴: "RELAXED", 총장: "STANDARD", 무드: "CASUAL" }, aiStatus: "HIT", stockStatus: "판매중" },
+  { id: "top-collar-tee-7158", name: "7158_유틸리티 반팔 셔츠", category: "상의", price: 29000, priceText: "29,000원", comparePriceText: "69,000원", summary: "깨끗한 카라 반팔", description: "넥 라인이 답답하지 않고 깨끗하게 정리되는 반팔 셔츠입니다.", colors: ["화이트", "블랙"], sizes: ["M", "L", "XL"], imageClass: "top-showcase-05", fit: { 어깨: "REGULAR", 가슴: "CLEAN", 총장: "STANDARD", 무드: "DAILY" }, aiStatus: "SALE", stockStatus: "판매중" },
+  { id: "top-graphic-knit-7023", name: "7023_마니또 니트", category: "상의", price: 29000, priceText: "29,000원", comparePriceText: "62,000원", summary: "컬러 그래픽 니트", description: "심플한 팬츠와 매치했을 때 포인트가 살아나는 그래픽 니트 티셔츠입니다.", colors: ["크림", "그레이"], sizes: ["M", "L", "XL"], imageClass: "top-showcase-06", fit: { 어깨: "RELAXED", 가슴: "SOFT", 총장: "STANDARD", 무드: "POINT" }, aiStatus: "MD", stockStatus: "판매중" },
+  { id: "top-stripe-shirt-7261", name: "7261_주름 스트라이프 셔츠", category: "상의", price: 29000, priceText: "29,000원", comparePriceText: "69,000원", summary: "세로선이 살아나는 셔츠", description: "세로 스트라이프와 가벼운 주름감으로 상체가 길어 보이는 셔츠입니다.", colors: ["블랙", "베이지"], sizes: ["M", "L", "XL"], imageClass: "top-showcase-07", fit: { 어깨: "RELAXED", 가슴: "RELAXED", 총장: "STANDARD", 무드: "SMART" }, aiStatus: "HIT", stockStatus: "판매중" },
+  { id: "top-mockneck-7208", name: "7208_자가드 반목 셔츠", category: "상의", price: 29000, priceText: "29,000원", comparePriceText: "59,000원", summary: "단정한 반목 티셔츠", description: "목선을 정리해 주고 깔끔한 인상을 만드는 반목 스타일 티셔츠입니다.", colors: ["화이트", "블랙"], sizes: ["M", "L", "XL"], imageClass: "top-showcase-08", fit: { 어깨: "REGULAR", 가슴: "CLEAN", 총장: "STANDARD", 무드: "MINIMAL" }, aiStatus: "BEST", stockStatus: "판매중" },
+  { id: "bottom-cotton-wide-6552", name: "6552_트렌드 린넨팬츠 1+1", category: "하의", price: 32000, priceText: "32,000원", comparePriceText: "49,000원", summary: "편한 와이드 린넨 팬츠", description: "여유 있는 통과 자연스러운 주름감으로 데일리하게 입기 좋은 와이드 팬츠입니다.", colors: ["블랙", "베이지"], sizes: ["M", "L", "XL", "2XL"], imageClass: "bottom-showcase-01", fit: { 허리: "BANDING", 허벅지: "RELAXED", 밑단: "WIDE", 기장: "LONG" }, aiStatus: "1+1", stockStatus: "판매중" },
+  { id: "bottom-cool-check-7516", name: "7516_하객 체크 팬츠", category: "하의", price: 29000, priceText: "29,000원", comparePriceText: "42,000원", summary: "시원한 체크 밴딩 팬츠", description: "밴딩 허리와 체크 패턴으로 편하면서도 밋밋하지 않은 팬츠입니다.", colors: ["네이비", "그레이"], sizes: ["M", "L", "XL"], imageClass: "bottom-showcase-02", fit: { 허리: "BANDING", 허벅지: "RELAXED", 밑단: "TAPERED", 기장: "ANKLE" }, aiStatus: "HIT", stockStatus: "판매중" },
+  { id: "bottom-linen-oneplus-7465", name: "7465_와이드 린넨팬츠 1+1", category: "하의", price: 35000, priceText: "35,000원", comparePriceText: "79,000원", summary: "여름 린넨 와이드", description: "가볍고 통기성이 좋아 더운 날에도 편안하게 입는 린넨 와이드 팬츠입니다.", colors: ["아이보리", "차콜"], sizes: ["M", "L", "XL"], imageClass: "bottom-showcase-03", fit: { 허리: "EASY", 허벅지: "LOOSE", 밑단: "WIDE", 기장: "LONG" }, aiStatus: "BEST", stockStatus: "판매중" },
+  { id: "bottom-cargo-shorts-2971", name: "2971_시티 밴딩 반바지 1+1", category: "하의", price: 29000, priceText: "29,000원", comparePriceText: "49,000원", summary: "포켓 포인트 반바지", description: "활동성이 좋고 포켓 디테일이 살아있는 여름 카고 반바지입니다.", colors: ["카키", "블랙"], sizes: ["M", "L", "XL"], imageClass: "bottom-showcase-04", fit: { 허리: "BANDING", 허벅지: "RELAXED", 밑단: "SHORT", 기장: "HALF" }, aiStatus: "1+1", stockStatus: "판매중" },
+  { id: "bottom-black-crop-4794", name: "4794_기본 크롭 팬츠", category: "하의", price: 29000, priceText: "29,000원", comparePriceText: "59,000원", summary: "깔끔한 블랙 팬츠", description: "셔츠와 티셔츠에 모두 잘 맞는 기본 블랙 크롭 팬츠입니다.", colors: ["블랙"], sizes: ["M", "L", "XL"], imageClass: "bottom-showcase-05", fit: { 허리: "REGULAR", 허벅지: "CLEAN", 밑단: "SLIM", 기장: "CROP" }, aiStatus: "BEST", stockStatus: "판매중" },
+  { id: "bottom-light-denim-6457", name: "6457_런더 무 청바지", category: "하의", price: 49000, priceText: "49,000원", comparePriceText: "89,000원", summary: "연청 데님 팬츠", description: "밝은 컬러감으로 여름 상의와 산뜻하게 매치되는 데님 팬츠입니다.", colors: ["연청"], sizes: ["S", "M", "L", "XL"], imageClass: "bottom-showcase-06", fit: { 허리: "REGULAR", 허벅지: "RELAXED", 밑단: "STRAIGHT", 기장: "STANDARD" }, aiStatus: "MD", stockStatus: "판매중" },
+  { id: "bottom-premium-slacks-5138", name: "5138_프리미엄 정장바지", category: "하의", price: 39000, priceText: "39,000원", comparePriceText: "89,000원", summary: "정돈된 슬랙스 핏", description: "허리부터 밑단까지 깔끔하게 떨어져 출근룩과 하객룩에 좋은 슬랙스입니다.", colors: ["네이비", "차콜"], sizes: ["M", "L", "XL"], imageClass: "bottom-showcase-07", fit: { 허리: "REGULAR", 허벅지: "CLEAN", 밑단: "STRAIGHT", 기장: "LONG" }, aiStatus: "HURRY UP", stockStatus: "판매중" },
+  { id: "bottom-secret-slacks-3495", name: "3495_본더핏 팬츠", category: "하의", price: 48000, priceText: "48,000원", comparePriceText: "100,000원", summary: "다리가 길어 보이는 블랙 팬츠", description: "군더더기 없는 블랙 실루엣으로 다리 라인을 길고 깔끔하게 보여주는 팬츠입니다.", colors: ["블랙"], sizes: ["M", "L", "XL"], imageClass: "bottom-showcase-08", fit: { 허리: "REGULAR", 허벅지: "SLIM", 밑단: "STRAIGHT", 기장: "LONG" }, aiStatus: "HIT", stockStatus: "판매중" }
+];
 function formatGoodformPrice(value) {
   const number = Number(String(value).replace(/[^0-9]/g, "")) || 0;
   return `${number.toLocaleString("ko-KR")}원`;
@@ -258,14 +276,24 @@ function createGoodformId(name) {
   return `${base || "product"}-${Date.now().toString(36)}`;
 }
 
+function mergeGoodformProducts(...groups) {
+  const seen = new Set();
+  return groups.flat().filter((product) => {
+    if (!product?.id || seen.has(product.id)) return false;
+    seen.add(product.id);
+    return true;
+  });
+}
+
 function getGoodformProducts() {
+  const baseProducts = mergeGoodformProducts(GOODFORM_CATEGORY_SHOWCASE_PRODUCTS, GOODFORM_DEFAULT_PRODUCTS);
   const saved = localStorage.getItem(GOODFORM_STORAGE_KEYS.products);
-  if (!saved) return GOODFORM_DEFAULT_PRODUCTS;
+  if (!saved) return baseProducts;
   try {
     const parsed = JSON.parse(saved);
-    return Array.isArray(parsed) && parsed.length ? parsed : GOODFORM_DEFAULT_PRODUCTS;
+    return Array.isArray(parsed) && parsed.length ? mergeGoodformProducts(GOODFORM_CATEGORY_SHOWCASE_PRODUCTS, parsed, GOODFORM_DEFAULT_PRODUCTS) : baseProducts;
   } catch {
-    return GOODFORM_DEFAULT_PRODUCTS;
+    return baseProducts;
   }
 }
 
@@ -334,4 +362,6 @@ function saveGoodformOrder(order) {
 function goodformImageStyle(item) {
   return item?.imageData ? `style="background-image: linear-gradient(180deg, rgba(20,20,20,0.02), rgba(20,20,20,0.2)), url('${item.imageData}')"` : "";
 }
+
+
 
