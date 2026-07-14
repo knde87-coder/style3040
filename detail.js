@@ -1,5 +1,5 @@
 ﻿function chipList(items, type) {
-  return (items || ["기본"]).map((item, index) => `<button class="filter-chip ${index === 0 ? "active" : ""}" type="button" data-${type}="${item}">${item}</button>`).join("");
+  return (items || ["기본"]).map((item, index) => `<button class="market-select-chip ${index === 0 ? "active" : ""}" type="button" data-${type}="${item}">${item}</button>`).join("");
 }
 
 function renderFit(product) {
@@ -8,11 +8,22 @@ function renderFit(product) {
   return entries.slice(0, 4).map(([label, value]) => `<div><span>${label}</span><strong>${value}</strong></div>`).join("");
 }
 
-function setImage(el, product, fallbackClass = "tile-image-one") {
-  el.className = `detail-main-image tile-image ${product.imageClass || fallbackClass}`;
+function setProductImage(el, product, extraClass = "") {
+  el.className = `${extraClass} tile-image ${product.imageClass || "tile-image-one"}`.trim();
   if (product.imageData) {
-    el.style.backgroundImage = `linear-gradient(180deg, rgba(20,20,20,0.02), rgba(20,20,20,0.34)), url('${product.imageData}')`;
+    el.style.backgroundImage = `linear-gradient(180deg, rgba(20,20,20,0.02), rgba(20,20,20,0.18)), url('${product.imageData}')`;
   }
+}
+
+function renderDetailStack(product) {
+  const stack = document.getElementById("detail-stack");
+  if (!stack) return;
+  const related = [product, { imageClass: "tile-image-pocket-shirt" }, { imageClass: "tile-image-linen-set" }, { imageClass: "tile-image-three" }];
+  stack.innerHTML = related.map((item, index) => `
+    <figure class="detail-stack-card">
+      <div class="detail-stack-image tile-image ${item.imageClass || product.imageClass || "tile-image-one"}" ${goodformImageStyle(item)}></div>
+      <figcaption>${index === 0 ? product.name : "컬러 및 착장 참고 이미지"}</figcaption>
+    </figure>`).join("");
 }
 
 function renderDetail() {
@@ -21,15 +32,20 @@ function renderDetail() {
   document.title = `${product.name} | 비율좋은그사람`;
   document.getElementById("detail-name").textContent = product.name;
   document.getElementById("detail-price").textContent = product.priceText || formatGoodformPrice(product.price);
+  const compare = document.getElementById("detail-compare");
+  if (compare) compare.textContent = product.comparePriceText || "";
   document.getElementById("detail-copy").textContent = product.description || product.summary;
-  setImage(document.getElementById("detail-main-image"), product, "tile-image-one");
-  document.getElementById("detail-thumbs").innerHTML = [product, { imageClass: "tile-image-three" }, { imageClass: "tile-image-one" }].map((item) => `<div class="detail-thumb tile-image ${item.imageClass || ""}" ${goodformImageStyle(item)}></div>`).join("");
+  const code = document.getElementById("detail-code");
+  if (code) code.textContent = `${product.category || "GOODFORM"} / ${product.aiStatus || "READY"}`;
+  setProductImage(document.getElementById("detail-main-image"), product, "market-detail-main");
+  document.getElementById("detail-thumbs").innerHTML = [product, { imageClass: "tile-image-pocket-shirt" }, { imageClass: "tile-image-linen-set" }].map((item) => `<div class="detail-thumb tile-image ${item.imageClass || product.imageClass || ""}" ${goodformImageStyle(item)}></div>`).join("");
   document.getElementById("color-options").innerHTML = chipList(product.colors, "color");
   document.getElementById("size-options").innerHTML = chipList(product.sizes, "size");
   document.getElementById("fit-meter-grid").innerHTML = renderFit(product);
-  document.querySelectorAll(".option-box .filter-chip").forEach((button) => {
+  renderDetailStack(product);
+  document.querySelectorAll(".market-select-chip").forEach((button) => {
     button.addEventListener("click", () => {
-      button.parentElement.querySelectorAll(".filter-chip").forEach((chip) => chip.classList.remove("active"));
+      button.parentElement.querySelectorAll(".market-select-chip").forEach((chip) => chip.classList.remove("active"));
       button.classList.add("active");
     });
   });
@@ -45,6 +61,3 @@ function renderDetail() {
 }
 
 renderDetail();
-
-
-

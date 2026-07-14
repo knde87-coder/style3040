@@ -1697,3 +1697,97 @@ main,
     padding: 24px 16px 64px;
   }
 }
+
+/* Market storefront rebuild */
+.market-body { margin: 0; background: #fff; color: #1f2424; font-family: "SUIT", sans-serif; }
+.market-body a { color: inherit; text-decoration: none; }
+.market-header { position: sticky; top: 0; z-index: 20; background: rgba(255, 255, 255, 0.96); border-bottom: 1px solid #e8e3dc; backdrop-filter: blur(12px); }
+.market-headline { min-height: 128px; display: grid; grid-template-columns: 260px 1fr 260px; align-items: center; gap: 24px; max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+.market-header.compact .market-headline { min-height: 104px; }
+.kakao-consult { justify-self: start; display: inline-flex; align-items: center; gap: 13px; border: 1px solid #dedbd5; border-radius: 10px; padding: 13px 18px; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.04); font-size: 18px; }
+.kakao-badge { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #ffe812; color: #111; font-weight: 900; }
+.market-logo { justify-self: center; text-align: center; line-height: 1; }
+.market-logo span { display: block; margin-bottom: 8px; font-size: 12px; letter-spacing: .42em; color: #222; }
+.market-logo strong { display: block; font-family: "Noto Serif KR", serif; font-size: clamp(34px, 4.2vw, 56px); font-weight: 900; letter-spacing: -.08em; color: #292929; }
+.market-logo em { display: block; margin-top: 12px; font-style: normal; letter-spacing: .38em; color: #0066cc; font-weight: 800; font-size: 14px; }
+.market-tools { justify-self: end; display: flex; gap: 16px; align-items: center; color: #555; font-size: 14px; }
+.market-tabs { height: 42px; display: flex; align-items: center; justify-content: center; gap: clamp(24px, 5vw, 72px); border-top: 1px solid #eee9e2; font-size: 13px; font-weight: 800; }
+.market-tabs a { padding: 14px 0; white-space: nowrap; }
+.market-tabs a:hover, .market-tabs .tab-sale { color: #0066cc; }
+.hamburger-button { position: absolute; left: 28px; display: grid; gap: 5px; width: 30px; border: 0; background: transparent; padding: 0; cursor: pointer; }
+.hamburger-button span { display: block; height: 2px; background: #222; }
+.market-main { max-width: 1280px; margin: 0 auto; padding: 18px 28px 80px; }
+.notice-strip { display: flex; justify-content: center; gap: 28px; padding: 12px; color: #777; font-size: 13px; }
+.market-section { margin-top: 28px; }
+.market-section-title { text-align: center; margin: 22px 0 28px; font-size: clamp(22px, 2.4vw, 32px); font-weight: 500; letter-spacing: -.04em; }
+.market-section-title span { color: #0066cc; }
+.market-product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px 18px; }
+.market-product-grid.wide { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 22px; }
+.market-product-card { min-width: 0; text-align: center; }
+.market-product-card h3 { margin: 13px 4px 4px; font-size: 15px; font-weight: 500; color: #333; }
+.market-product-card p { min-height: 20px; margin: 0 4px 6px; color: #777; font-size: 12px; }
+.market-product-image { position: relative; height: 270px; background-size: cover; background-position: center; background-color: #f1f1ef; overflow: hidden; }
+.market-product-grid.wide .market-product-image { height: 420px; }
+.rank-badge { position: absolute; top: 10px; left: 10px; padding: 4px 7px; background: rgba(255,255,255,.82); font-size: 11px; font-weight: 800; }
+.soldout-badge { position: absolute; top: 10px; right: 10px; padding: 4px 7px; background: #111; color: #fff; font-size: 11px; }
+.market-price-row { display: flex; justify-content: center; align-items: baseline; gap: 8px; font-size: 12px; }
+.market-price-row strong { font-size: 13px; }
+.market-price-row del { color: #999; }
+.market-guide-band { margin-top: 70px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; border-top: 1px solid #eee; padding-top: 28px; }
+.market-guide-band article { padding: 24px; background: #f7f5f1; }
+.market-guide-band strong { font-size: 18px; }
+.market-guide-band p { color: #666; line-height: 1.7; }
+.market-footer { border-top: 1px solid #eee; padding: 30px 28px; display: flex; justify-content: center; gap: 18px; color: #777; font-size: 13px; }
+.tile-image-shirt-stripe { background-image: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08)), url("https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?auto=format&fit=crop&w=900&q=82"); }
+.tile-image-pocket-shirt { background-image: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08)), url("https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=82"); }
+.tile-image-linen-set { background-image: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08)), url("https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=900&q=82"); }
+.tile-image-outer { background-image: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08)), url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=82"); }
+.tile-image-resort { background-image: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08)), url("https://images.unsplash.com/photo-1506629905607-d9f297d4f5f5?auto=format&fit=crop&w=900&q=82"); }
+.tile-image-shoes { background-image: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08)), url("https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=82"); }
+.tile-image-bag { background-image: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08)), url("https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=82"); }
+.detail-market-main { max-width: 1100px; margin: 0 auto; padding: 26px 24px 80px; }
+.market-detail-layout { display: grid; grid-template-columns: minmax(0, 520px) minmax(320px, 1fr); gap: 54px; align-items: start; }
+.market-detail-main { height: 620px; background-size: cover; background-position: center; background-color: #f0eee9; }
+.market-thumbs { margin-top: 10px; }
+.market-thumbs .detail-thumb { width: 64px; height: 78px; background-size: cover; background-position: center; }
+.market-detail-info { position: sticky; top: 180px; padding-top: 8px; }
+.detail-code { margin: 0 0 10px; font-size: 12px; color: #777; letter-spacing: .08em; }
+.market-detail-info h1 { margin: 0 0 12px; font-size: 22px; font-weight: 700; color: #222; }
+.detail-price-line { display: flex; align-items: baseline; gap: 10px; padding-bottom: 18px; border-bottom: 1px solid #eee; }
+.detail-price-line strong { font-size: 20px; }
+.detail-price-line del { color: #999; font-size: 13px; }
+.market-option-box { margin-top: 18px; }
+.market-option-box label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 800; }
+.market-select-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.market-select-chip { min-width: 78px; border: 1px solid #d9d4cd; background: #fff; padding: 10px 12px; cursor: pointer; }
+.market-select-chip.active { border-color: #111; background: #111; color: #fff; }
+.market-detail-actions { display: grid; grid-template-columns: 1fr 1fr 48px; gap: 8px; margin-top: 24px; }
+.market-detail-actions .button { justify-content: center; border-radius: 0; }
+.wish-button { border: 1px solid #d9d4cd; background: #fff; cursor: pointer; }
+.compact-meta { margin-top: 20px; color: #666; font-size: 13px; line-height: 1.8; }
+.market-detail-content { margin-top: 72px; text-align: center; }
+.market-detail-content h2 { margin-bottom: 24px; font-weight: 500; }
+.detail-stack { display: grid; gap: 8px; justify-content: center; }
+.detail-stack-card { margin: 0; }
+.detail-stack-image { width: min(520px, 82vw); height: 680px; background-size: cover; background-position: center; background-color: #f1f0ec; }
+.detail-stack-card figcaption { padding: 8px 0 18px; color: #777; font-size: 12px; }
+.market-fit-guide { margin-top: 58px; }
+@media (max-width: 900px) {
+  .market-headline { grid-template-columns: 1fr; min-height: auto; padding: 18px; gap: 12px; }
+  .kakao-consult, .market-logo, .market-tools { justify-self: center; }
+  .market-tools { flex-wrap: wrap; justify-content: center; }
+  .market-tabs { justify-content: flex-start; overflow-x: auto; gap: 26px; padding-left: 64px; }
+  .market-product-grid, .market-product-grid.wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .market-product-image, .market-product-grid.wide .market-product-image { height: 260px; }
+  .market-guide-band, .market-detail-layout { grid-template-columns: 1fr; }
+  .market-detail-info { position: static; }
+  .market-detail-main, .detail-stack-image { height: 520px; }
+  .market-footer { flex-direction: column; align-items: center; text-align: center; }
+}
+@media (max-width: 540px) {
+  .market-main { padding: 12px 14px 52px; }
+  .kakao-consult { width: 100%; justify-content: center; }
+  .market-product-grid, .market-product-grid.wide { grid-template-columns: 1fr; }
+  .market-product-image, .market-product-grid.wide .market-product-image { height: 390px; }
+  .market-detail-actions { grid-template-columns: 1fr; }
+}

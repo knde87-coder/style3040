@@ -4,68 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>상품상세 | 비율좋은그사람</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body>
-    <div class="top-banner">신규 회원 전 상품 무료배송</div>
-    <main class="page-shell">
-      <div class="page-topbar">
-        <a href="/">비율좋은그사람</a>
-        <div class="page-actions"><a href="/search">검색</a><a href="/cart">장바구니</a></div>
+  <body class="market-body detail-market-body">
+    <header class="market-header compact">
+      <div class="market-headline">
+        <a class="kakao-consult" href="https://pf.kakao.com/_goodform" target="_blank" rel="noreferrer"><span class="kakao-badge">Ch</span><strong>카카오톡 주문상담</strong></a>
+        <a class="market-logo" href="/"><span>입는 순간 비율이 좋아지는</span><strong>비율좋은그사람</strong><em>GOODFORM</em></a>
+        <div class="market-tools"><a href="/search">검색</a><a href="/cart">장바구니</a><a href="/orders">주문조회</a></div>
       </div>
+      <nav class="market-tabs" aria-label="남성복 카테고리">
+        <button class="hamburger-button" type="button" aria-label="전체 메뉴"><span></span><span></span><span></span></button>
+        <a href="/product-list">상의</a><a href="/product-list">하의</a><a href="/product-list">외투</a><a href="/product-list">상하세트</a><a href="/product-list">신발</a><a href="/product-list">ACC</a>
+      </nav>
+    </header>
+
+    <main class="detail-market-main">
       <p class="page-breadcrumb">HOME / SHOP / DETAIL</p>
-      <section class="detail-layout">
-        <div class="detail-gallery">
-          <div id="detail-main-image" class="detail-main-image tile-image tile-image-two"></div>
-          <div id="detail-thumbs" class="detail-thumb-row"></div>
+      <section class="market-detail-layout">
+        <div class="market-detail-gallery">
+          <div id="detail-main-image" class="market-detail-main tile-image tile-image-shirt-stripe"></div>
+          <div id="detail-thumbs" class="detail-thumb-row market-thumbs"></div>
         </div>
-        <div class="detail-info">
-          <p class="section-label">FIT DETAIL</p>
-          <h1 id="detail-name">원턱 와이드 슬랙스</h1>
-          <p id="detail-price" class="detail-price">43,000원</p>
-          <p id="detail-copy" class="detail-copy">허리와 허벅지는 편안하고 밑단으로 갈수록 자연스럽게 떨어져 다리가 길어 보이는 팬츠입니다.</p>
-          <div class="option-box">
-            <strong>색상</strong>
-            <div id="color-options" class="filter-chip-row"></div>
-          </div>
-          <div class="option-box">
-            <strong>사이즈</strong>
-            <div id="size-options" class="filter-chip-row"></div>
-          </div>
-          <div class="detail-actions">
-            <a class="button secondary" href="/cart" data-cart-action="add">장바구니 담기</a>
-            <a class="button primary" href="/cart" data-cart-action="buy">바로 구매하기</a>
-          </div>
-          <div class="detail-meta">
-            <p>핏 참고 이미지 제공</p><p>리뷰 128개</p>
-            <p>만족도 4.8 / 5.0</p>
-            <p>오후 2시 이전 주문 시 당일 출고</p>
-          </div>
-        </div>
+        <aside class="market-detail-info">
+          <p id="detail-code" class="detail-code">GOODFORM</p>
+          <h1 id="detail-name">V274_아이스 스트라이프 반팔셔츠</h1>
+          <div class="detail-price-line"><strong id="detail-price">39,000원</strong><del id="detail-compare">80,000원</del></div>
+          <p id="detail-copy" class="detail-copy">시원하게 떨어지는 여름 셔츠입니다.</p>
+          <div class="market-option-box"><label>색상</label><div id="color-options" class="market-select-row"></div></div>
+          <div class="market-option-box"><label>사이즈</label><div id="size-options" class="market-select-row"></div></div>
+          <div class="market-detail-actions"><a class="button primary" href="/cart" data-cart-action="buy">바로구매</a><a class="button secondary" href="/cart" data-cart-action="add">장바구니</a><button class="wish-button" type="button">♡</button></div>
+          <div class="detail-meta compact-meta"><p>전 상품 무료배송</p><p>오후 2시 이전 주문 당일 출고</p><p>AI 모델 상세컷 순차 업데이트</p></div>
+        </aside>
       </section>
 
-      <section class="fit-guide-section" aria-label="핏 가이드">
-        <article>
-          <p class="section-label">FIT GUIDE</p>
-          <h2>고객이 바로 판단하는 핏 정보</h2>
-          <p>정면, 측면, 전신 핏 정보를 기준으로 기장감과 실루엣을 빠르게 비교할 수 있습니다.</p>
-        </article>
+      <section class="market-detail-content" aria-label="상품 상세 이미지">
+        <h2>상품 상세컷</h2>
+        <div id="detail-stack" class="detail-stack"></div>
+      </section>
+
+      <section class="fit-guide-section market-fit-guide" aria-label="핏 가이드">
+        <article><p class="section-label">FIT GUIDE</p><h2>핏 정보</h2><p>기장감과 실루엣을 구매 전에 빠르게 확인할 수 있습니다.</p></article>
         <div id="fit-meter-grid" class="fit-meter-grid"></div>
       </section>
     </main>
-      <script src="shop-data.js"></script>
+    <script src="shop-data.js"></script>
     <script src="detail.js"></script>
-      <script src="integration-config.js"></script>
+    <script src="integration-config.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
