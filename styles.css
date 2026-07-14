@@ -1835,3 +1835,31 @@ main,
   .category-featured-row { grid-auto-columns: 46%; gap: 10px; }
   .category-featured-image { height: 210px; }
 }
+
+/* Shared product delivery agreement notice */
+.china-order-notice { margin-top: 22px; padding: 16px; border: 1px solid #f0d6d6; background: #fff7f7; color: #392323; }
+.china-order-notice strong { display: block; margin-bottom: 7px; color: #d71920; font-size: 14px; }
+.china-order-notice p { margin: 0; line-height: 1.65; font-size: 13px; }
+.delivery-agreement-section { margin: 76px auto 24px; max-width: 980px; padding: clamp(30px, 5vw, 58px); background: #fff; border: 1px solid #ececec; text-align: center; color: #222; }
+.delivery-truck-icon { position: relative; width: 150px; height: 88px; margin: 0 auto 18px; color: #ee1118; }
+.truck-body { position: absolute; left: 32px; top: 32px; width: 76px; height: 34px; background: currentColor; border-radius: 6px 4px 4px 6px; }
+.truck-cabin { position: absolute; left: 104px; top: 40px; width: 34px; height: 26px; background: currentColor; clip-path: polygon(0 0, 72% 0, 100% 45%, 100% 100%, 0 100%); }
+.truck-wheel { position: absolute; bottom: 8px; width: 16px; height: 16px; border-radius: 50%; background: currentColor; }
+.truck-wheel.left { left: 48px; }
+.truck-wheel.right { right: 20px; }
+.truck-clock { position: absolute; left: 8px; top: 0; width: 54px; height: 54px; border: 8px solid currentColor; border-radius: 50%; background: #fff; }
+.truck-clock::before { content: ""; position: absolute; left: 21px; top: 11px; width: 5px; height: 17px; background: currentColor; border-radius: 8px; }
+.truck-clock::after { content: ""; position: absolute; left: 22px; top: 25px; width: 17px; height: 5px; background: currentColor; border-radius: 8px; transform: rotate(35deg); transform-origin: left center; }
+.delivery-agreement-section h2 { margin: 0; font-size: clamp(34px, 6vw, 58px); font-weight: 900; letter-spacing: -.06em; color: #2b2b2b; }
+.delivery-lead { margin: 28px 0 26px; font-size: clamp(18px, 2.2vw, 26px); font-weight: 900; line-height: 1.45; }
+.delivery-required-copy { display: grid; gap: 8px; max-width: 860px; margin: 0 auto; }
+.delivery-required-copy p { margin: 0; font-size: clamp(15px, 1.7vw, 20px); line-height: 1.6; }
+.delivery-detail-grid { margin-top: 42px; display: grid; gap: 24px; text-align: left; }
+.delivery-detail-grid article { padding-top: 22px; border-top: 1px solid #ededed; }
+.delivery-detail-grid h3 { margin: 0 0 12px; font-size: 19px; font-weight: 900; }
+.delivery-detail-grid p { margin: 0; color: #333; line-height: 1.75; font-weight: 700; }
+@media (max-width: 640px) {
+  .delivery-agreement-section { margin-top: 48px; padding: 28px 18px; }
+  .delivery-truck-icon { transform: scale(.82); margin-bottom: 8px; }
+  .delivery-detail-grid p { font-weight: 600; }
+}
