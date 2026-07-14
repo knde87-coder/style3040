@@ -197,6 +197,54 @@ const GOODFORM_DEFAULT_PRODUCTS = [
     fit: { 크기: "COMPACT", 수납: "DAILY", 무드: "CLEAN", 계절: "ALL" },
     aiStatus: "AI MODEL",
     stockStatus: "판매중"
+  },
+  {
+    id: "cotton-over-jacket",
+    name: "코튼 오버핏 셔츠 자켓",
+    category: "외투",
+    price: 54000,
+    priceText: "54,000원",
+    comparePriceText: "82,000원",
+    summary: "셔츠처럼 가볍게 걸치는 외투",
+    description: "티셔츠 위에 가볍게 걸치기 좋은 코튼 셔츠 자켓입니다.",
+    colors: ["카키", "크림", "블랙"],
+    sizes: ["M", "L", "XL"],
+    imageClass: "tile-image-outer",
+    fit: { 어깨: "OVER", 가슴: "RELAXED", 총장: "STANDARD", 무드: "CASUAL" },
+    aiStatus: "AI MODEL",
+    stockStatus: "판매중"
+  },
+  {
+    id: "clean-runner",
+    name: "클린 데일리 러너 스니커즈",
+    category: "신발",
+    price: 59000,
+    priceText: "59,000원",
+    comparePriceText: "89,000원",
+    summary: "슬랙스와 데님에 모두 맞는 스니커즈",
+    description: "과한 장식 없이 데일리룩에 자연스럽게 맞는 남성 스니커즈입니다.",
+    colors: ["화이트", "블랙"],
+    sizes: ["250", "260", "270", "280"],
+    imageClass: "tile-image-shoes",
+    fit: { 굽: "LOW", 착화감: "SOFT", 무드: "CLEAN", 계절: "ALL" },
+    aiStatus: "AI MODEL",
+    stockStatus: "판매중"
+  },
+  {
+    id: "silver-chain-necklace",
+    name: "실버 포인트 체인 목걸이",
+    category: "ACC",
+    price: 24000,
+    priceText: "24,000원",
+    comparePriceText: "39,000원",
+    summary: "티셔츠에 포인트를 주는 액세서리",
+    description: "기본 티셔츠와 셔츠 사이에 가볍게 포인트를 줄 수 있는 체인 목걸이입니다.",
+    colors: ["실버"],
+    sizes: ["FREE"],
+    imageClass: "tile-image-bag",
+    fit: { 크기: "LIGHT", 무드: "POINT", 계절: "ALL", 관리: "EASY" },
+    aiStatus: "AI MODEL",
+    stockStatus: "판매중"
   }
 ];
 
@@ -286,3 +334,4 @@ function saveGoodformOrder(order) {
 function goodformImageStyle(item) {
   return item?.imageData ? `style="background-image: linear-gradient(180deg, rgba(20,20,20,0.02), rgba(20,20,20,0.2)), url('${item.imageData}')"` : "";
 }
+

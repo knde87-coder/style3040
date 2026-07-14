@@ -4,49 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>상품목록 | 비율좋은그사람</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=SUIT:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <div class="top-banner">신규 회원 전 상품 무료배송</div>
-    <main class="page-shell">
-      <div class="page-topbar">
-        <a href="/">비율좋은그사람</a>
-        <div class="page-actions"><a href="/search">검색</a><a href="/cart">장바구니</a></div>
+  <body class="market-body catalog-market-body">
+    <header class="category-shop-header">
+      <div class="category-topline">
+        <button class="hamburger-button inline" type="button" aria-label="전체 메뉴"><span></span><span></span><span></span></button>
+        <nav id="category-tabs" class="category-tabs" aria-label="상품 카테고리">
+          <a href="/product-list?category=%EC%83%81%EC%9D%98" data-category="상의">상의</a>
+          <a href="/product-list?category=%ED%95%98%EC%9D%98" data-category="하의">하의</a>
+          <a href="/product-list?category=%EC%99%B8%ED%88%AC" data-category="외투">외투</a>
+          <a href="/product-list?category=%EC%83%81%ED%95%98%EC%84%B8%ED%8A%B8" data-category="상하세트">상하세트</a>
+          <a href="/product-list?category=%EC%8B%A0%EB%B0%9C" data-category="신발">신발</a>
+          <a href="/product-list?category=ACC" data-category="ACC">ACC</a>
+        </nav>
+        <a class="category-cart" href="/cart" aria-label="장바구니">⌂</a>
       </div>
-      <p class="page-breadcrumb">HOME / SHOP / BEST</p>
-      <section class="page-hero compact-page-hero">
-        <div>
-          <p class="section-label">PRODUCT LIST</p>
-          <h1>남성복 베스트 상품</h1>
-          <p>상의, 팬츠, 셔츠, 아우터까지 지금 많이 찾는 남성 데일리웨어를 모았습니다.</p>
-        </div>
-        <div class="filter-chip-row">
-          <span class="filter-chip active">전체</span>
-          <span class="filter-chip">반팔/티셔츠</span>
-          <span class="filter-chip">셔츠</span>
-          <span class="filter-chip">팬츠</span>
-          <span class="filter-chip">아우터</span>
-          <span class="filter-chip">셋업</span>
-        </div>
+    </header>
+
+    <main class="category-main">
+      <section class="category-strip" aria-label="주간 인기상품">
+        <h1><span id="category-name-top">상의</span> <em>주간 인기상품</em></h1>
+        <div id="category-featured" class="category-featured-row"></div>
       </section>
-      <section id="catalog-grid" class="product-list-grid catalog-grid" aria-label="상품 목록"></section>
+
+      <section class="category-products" aria-label="카테고리 전체상품">
+        <h2><span id="category-name-list">상의</span> <em>전체상품</em></h2>
+        <div id="catalog-grid" class="category-product-grid"></div>
+      </section>
     </main>
-      <script src="firebase-config.js"></script>
+
+    <script src="firebase-config.js"></script>
     <script src="firebase-store.js"></script>
     <script src="shop-data.js"></script>
     <script src="catalog.js"></script>
-      <script src="integration-config.js"></script>
+    <script src="integration-config.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
