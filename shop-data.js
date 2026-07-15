@@ -1,4 +1,4 @@
-﻿const GOODFORM_STORAGE_KEYS = {
+const GOODFORM_STORAGE_KEYS = {
   products: "goodform.products",
   selectedProduct: "goodform.selectedProduct",
   cart: "goodform.cart",
@@ -276,9 +276,33 @@ function createGoodformId(name) {
   return `${base || "product"}-${Date.now().toString(36)}`;
 }
 
+function normalizeGoodformProduct(product = {}) {
+  const price = Number(String(product.price || product.priceText || "0").replace(/[^0-9]/g, "")) || 0;
+  return {
+    id: product.id || createGoodformId(product.name || "상품"),
+    name: product.name || "비율좋은그남자 상품",
+    category: product.category || "상의",
+    price,
+    priceText: product.priceText || formatGoodformPrice(price),
+    comparePriceText: product.comparePriceText || "",
+    summary: product.summary || "핏과 비율을 살리는 남성 데일리웨어",
+    description: product.description || product.summary || "깔끔한 남성 데일리웨어입니다.",
+    colors: Array.isArray(product.colors) && product.colors.length ? product.colors : ["기본"],
+    sizes: Array.isArray(product.sizes) && product.sizes.length ? product.sizes : ["FREE"],
+    imageClass: product.imageClass || "tile-image-one",
+    imageData: product.imageData || "",
+    fit: product.fit || { 핏: "REGULAR", 기장: "STANDARD", 무드: "CLEAN", 착용감: "SOFT" },
+    aiStatus: product.aiStatus || "READY",
+    stockStatus: product.stockStatus || "판매중",
+    deliveryNotice: product.deliveryNotice || "중국 제작 오더 상품으로 영업일 기준 9~14일 정도 소요될 수 있습니다.",
+    badge: product.badge || product.aiStatus || "BEST",
+    updatedAt: product.updatedAt || new Date().toISOString()
+  };
+}
+
 function mergeGoodformProducts(...groups) {
   const seen = new Set();
-  return groups.flat().filter((product) => {
+  return groups.flat().map(normalizeGoodformProduct).filter((product) => {
     if (!product?.id || seen.has(product.id)) return false;
     seen.add(product.id);
     return true;
@@ -291,14 +315,15 @@ function getGoodformProducts() {
   if (!saved) return baseProducts;
   try {
     const parsed = JSON.parse(saved);
-    return Array.isArray(parsed) && parsed.length ? mergeGoodformProducts(GOODFORM_CATEGORY_SHOWCASE_PRODUCTS, parsed, GOODFORM_DEFAULT_PRODUCTS) : baseProducts;
+    return Array.isArray(parsed) && parsed.length ? mergeGoodformProducts(parsed, GOODFORM_CATEGORY_SHOWCASE_PRODUCTS, GOODFORM_DEFAULT_PRODUCTS) : baseProducts;
   } catch {
     return baseProducts;
   }
 }
 
 function saveGoodformProducts(products) {
-  localStorage.setItem(GOODFORM_STORAGE_KEYS.products, JSON.stringify(products));
+  const normalized = Array.isArray(products) ? products.map(normalizeGoodformProduct) : [];
+  localStorage.setItem(GOODFORM_STORAGE_KEYS.products, JSON.stringify(normalized));
 }
 
 function getGoodformProduct(id) {
@@ -340,7 +365,9 @@ function addGoodformCartItem(product, options = {}) {
     imageData: product.imageData,
     color: options.color || product.colors?.[0] || "기본",
     size: options.size || product.sizes?.[0] || "FREE",
-    quantity: 1
+    quantity: 1,
+    category: product.category,
+    deliveryNotice: product.deliveryNotice || "영업일 기준 9~14일 소요"
   });
   saveGoodformCart(cart);
 }
@@ -362,6 +389,10 @@ function saveGoodformOrder(order) {
 function goodformImageStyle(item) {
   return item?.imageData ? `style="background-image: linear-gradient(180deg, rgba(20,20,20,0.02), rgba(20,20,20,0.2)), url('${item.imageData}')"` : "";
 }
+
+
+
+
 
 
 

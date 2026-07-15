@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ADMIN | 비율좋은그사람</title>
+    <title>ADMIN | 비율좋은그남자</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div class="top-banner">비율좋은그사람 관리자 전용 화면</div>
+    <div class="top-banner">비율좋은그남자 관리자 전용 화면</div>
 
     <main id="admin-login-screen" class="admin-login-shell">
       <section class="admin-login-card">
@@ -31,17 +31,17 @@
 
     <main id="admin-app" class="admin-app-shell admin-locked" hidden>
       <aside class="admin-sidebar">
-        <a class="admin-sidebar-brand" href="/admin">비율좋은그사람 ADMIN</a>
+        <a class="admin-sidebar-brand" href="/admin">비율좋은그남자 ADMIN</a>
         <nav class="admin-side-nav" aria-label="관리자 메뉴">
-          <a href="/admin" data-admin-section="dashboard">관리자 대시보드</a>
-          <a href="/admin/products" data-admin-section="products">상품 등록·수정·삭제</a>
+          <a href="/admin/dashboard" data-admin-section="dashboard">관리자 대시보드</a>
+          <a href="/admin/posts" data-admin-section="products">게시물/상품 등록·수정·삭제</a>
           <a href="/admin/categories" data-admin-section="categories">카테고리 관리</a>
           <a href="/admin/inventory" data-admin-section="inventory">옵션·재고 관리</a>
           <a href="/admin/orders" data-admin-section="orders">주문·배송 관리</a>
           <a href="/admin/users" data-admin-section="users">회원 관리</a>
-          <a href="/admin/reviews" data-admin-section="reviews">리뷰·문의 관리</a>
+          <a href="/admin/notices" data-admin-section="reviews">공지·문의 관리</a>
           <a href="/admin/banners" data-admin-section="banners">배너·공지 관리</a>
-          <a href="/admin/stats" data-admin-section="stats">매출·주문 통계</a>
+          <a href="/admin/settings" data-admin-section="stats">매출·운영 설정</a>
         </nav>
         <a class="admin-store-link" href="/" target="_blank" rel="noreferrer">쇼핑몰 보기</a>
         <button id="admin-logout-button" class="admin-logout-button" type="button">로그아웃</button>
@@ -89,28 +89,44 @@
 
       <section class="admin-panel-card" data-admin-panel="orders">
         <h2>주문·배송 관리</h2>
-        <p>주문 내역은 주문관리 화면과 연결됩니다. Firebase 연결 후 전체 주문을 실시간으로 관리할 수 있게 확장됩니다.</p>
-        <a class="button secondary" href="/orders">주문관리 화면 열기</a>
+        <p>현재 로컬 주문 데이터를 확인합니다. 실제 결제 연동 후에는 Firebase 주문 데이터와 연결하면 됩니다.</p>
+        <div id="admin-order-list" class="admin-status-list"></div>
+        <a class="button secondary" href="/orders">고객 주문조회 화면 열기</a>
       </section>
 
       <section class="admin-panel-card" data-admin-panel="users">
         <h2>회원 관리</h2>
-        <p>Firebase Auth/Firestore 연결 후 회원 role(customer/admin/super_admin), 가입일, 주문 내역을 관리합니다.</p>
+        <p>일반 회원은 customer, 관리자는 admin/super_admin 역할로 분리합니다. 아래 목록은 로컬 가입 회원 기준입니다.</p>
+        <div id="admin-user-list" class="admin-status-list"></div>
       </section>
 
       <section class="admin-panel-card" data-admin-panel="reviews">
-        <h2>리뷰·문의 관리</h2>
-        <p>상품 리뷰와 1:1 문의 답변 상태를 확인하는 관리자 영역입니다.</p>
+        <h2>공지·문의 관리</h2>
+        <p>고객에게 보여줄 공지 문구와 문의 응대 메모를 관리합니다.</p>
+        <form id="admin-notice-form" class="admin-inline-form">
+          <input id="admin-notice-title" type="text" placeholder="공지 제목" />
+          <textarea id="admin-notice-body" rows="4" placeholder="공지 내용 또는 문의 응대 메모"></textarea>
+          <button class="button primary" type="submit">공지 저장</button>
+        </form>
+        <div id="admin-notice-list" class="admin-status-list"></div>
       </section>
 
       <section class="admin-panel-card" data-admin-panel="banners">
         <h2>배너·공지 관리</h2>
-        <p>상단 무료배송 문구, 메인 배너, 공지사항 노출을 관리하는 영역입니다.</p>
+        <p>상단 배송 문구, 카카오 상담 문구, 앱 다운로드 안내 문구를 저장합니다.</p>
+        <form id="admin-banner-form" class="admin-inline-form">
+          <input id="admin-top-banner" type="text" placeholder="상단 배너 문구" />
+          <input id="admin-kakao-banner" type="text" placeholder="카카오 상담 문구" />
+          <input id="admin-app-banner" type="text" placeholder="앱 안내 문구" />
+          <button class="button primary" type="submit">배너 저장</button>
+        </form>
+        <p id="admin-banner-message" class="form-message">저장된 배너 문구는 다음 UI 연결 단계에서 홈 화면에 반영할 수 있습니다.</p>
       </section>
 
       <section class="admin-panel-card" data-admin-panel="stats">
-        <h2>매출·주문 통계</h2>
-        <p>일별 주문 수, 매출, 인기 상품 통계를 볼 수 있는 영역입니다. 결제 연동 후 실제 수치로 확장합니다.</p>
+        <h2>매출·운영 설정</h2>
+        <p>상품 수, 회원 수, 주문 수를 한 번에 확인합니다. 결제 연동 전까지는 로컬 데이터 기준입니다.</p>
+        <div id="admin-stats-list" class="admin-status-list"></div>
       </section>
 
       <section class="admin-layout" data-admin-panel="products" aria-label="상품 등록 폼">
@@ -127,6 +143,12 @@
           <label>
             <span>카테고리</span>
             <select name="category">
+                            <option>상의</option>
+              <option>하의</option>
+              <option>외투</option>
+              <option>상하세트</option>
+              <option>신발</option>
+              <option>ACC</option>
               <option>반팔/티셔츠</option>
               <option>카라/니트</option>
               <option>셔츠</option>
@@ -212,6 +234,10 @@
     <script src="/integration-config.js"></script>
   </body>
 </html>
+
+
+
+
 
 
 

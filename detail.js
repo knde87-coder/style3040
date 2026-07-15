@@ -29,7 +29,7 @@ function renderDetailStack(product) {
 function renderDetail() {
   const product = getSelectedGoodformProduct();
   if (!product) return;
-  document.title = `${product.name} | 비율좋은그사람`;
+  document.title = `${product.name} | 비율좋은그남자`;
   document.getElementById("detail-name").textContent = product.name;
   document.getElementById("detail-price").textContent = product.priceText || formatGoodformPrice(product.price);
   const compare = document.getElementById("detail-compare");
@@ -61,3 +61,4 @@ function renderDetail() {
 }
 
 renderDetail();
+

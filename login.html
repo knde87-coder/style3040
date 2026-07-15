@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인 | 비율좋은그남자</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="market-body auth-modal-body">
+    <div class="shop-utility-bar page-utility" aria-label="회원 메뉴"><a href="/mypage">내정보</a><span>|</span><a href="/cart">장바구니</a><span>|</span><a href="/login">로그인</a><span>|</span><a href="/signup">가입</a></div>
+    <main class="auth-modal-shell">
+      <section class="login-modal-card" aria-label="로그인">
+        <a class="auth-close" href="/" aria-label="닫기">×</a>
+        <h1>로그인</h1>
+        <form id="login-form" class="login-panel-form">
+          <input id="login-id" type="text" placeholder="아이디" autocomplete="username" required />
+          <input id="login-password" type="password" placeholder="비밀번호" autocomplete="current-password" required />
+          <label class="login-keep-row"><input type="checkbox" checked /> <span>로그인상태유지</span></label>
+          <button class="login-main-button" type="submit">로그인</button>
+        </form>
+        <p id="auth-message" class="auth-message" aria-live="polite"></p>
+        <div class="login-links"><a href="/signup">회원가입</a><a href="/login">아이디 · 비밀번호 찾기</a></div>
+        <div class="auth-divider"><span>또는</span></div>
+        <button class="kakao-start-button" type="button" data-kakao-auth><span></span>카카오로 시작하기</button>
+        <div class="auth-divider"><span>또는</span></div>
+        <a class="guest-order-button" href="/orders">비회원 주문배송조회</a>
+      </section>
+    </main>
+    <script src="firebase-config.js"></script>
+    <script src="firebase-store.js"></script>
+    <script src="auth.js"></script>
+  </body>
+</html>

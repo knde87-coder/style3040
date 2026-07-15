@@ -1,6 +1,6 @@
 ﻿{
-  "name": "비율좋은그사람",
-  "short_name": "비율좋은그사람",
+  "name": "비율좋은그남자",
+  "short_name": "비율좋은그남자",
   "description": "AI 모델 착장으로 핏과 분위기를 먼저 확인하는 남성 데일리웨어 셀렉트샵",
   "start_url": "/",
   "display": "standalone",
@@ -21,6 +21,7 @@
     }
   ]
 }
+
 
 
 

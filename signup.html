@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가입 | 비율좋은그남자</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="market-body auth-modal-body">
+    <div class="shop-utility-bar page-utility" aria-label="회원 메뉴"><a href="/mypage">내정보</a><span>|</span><a href="/cart">장바구니</a><span>|</span><a href="/login">로그인</a><span>|</span><a href="/signup">가입</a></div>
+    <main class="auth-modal-shell">
+      <section class="login-modal-card signup-choice-card" aria-label="회원가입">
+        <a class="auth-close" href="/" aria-label="닫기">×</a>
+        <h1>회원가입</h1>
+        <p class="signup-guide">가입 방식을 선택해 주세요.</p>
+        <a class="signup-choice idpw" href="/signup-id">ID/PW 회원가입</a>
+        <button class="signup-choice kakao" type="button" data-kakao-auth><span></span>카카오톡 가입</button>
+        <div class="auth-divider"><span>또는</span></div>
+        <a class="guest-order-button" href="/login">이미 계정이 있어요</a>
+      </section>
+    </main>
+    <script src="firebase-config.js"></script>
+    <script src="firebase-store.js"></script>
+    <script src="auth.js"></script>
+  </body>
+</html>

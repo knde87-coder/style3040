@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내정보 | 비율좋은그남자</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="market-body auth-modal-body">
+    <div class="shop-utility-bar page-utility" aria-label="회원 메뉴"><a href="/mypage">내정보</a><span>|</span><a href="/cart">장바구니</a><span>|</span><a href="/login">로그인</a><span>|</span><a href="/signup">가입</a></div>
+    <main class="auth-modal-shell">
+      <section id="mypage-card" class="login-modal-card mypage-card">
+        <h1>내정보</h1>
+        <p class="signup-guide"><strong id="mypage-name">회원</strong>님, 비율좋은그남자에 오신 걸 환영합니다.</p>
+        <div class="mypage-info-grid">
+          <span>아이디</span><strong id="mypage-id">-</strong>
+          <span>가입 방식</span><strong id="mypage-provider">-</strong>
+          <span>회원 등급</span><strong>일반 회원</strong>
+        </div>
+        <a class="guest-order-button" href="/orders">주문 내역 보기</a>
+        <button id="logout-button" class="login-main-button" type="button">로그아웃</button>
+      </section>
+    </main>
+    <script src="firebase-config.js"></script>
+    <script src="firebase-store.js"></script>
+    <script src="auth.js"></script>
+  </body>
+</html>

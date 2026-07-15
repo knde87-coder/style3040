@@ -11,12 +11,10 @@ const CATEGORY_MATCHERS = {
 async function getCatalogProducts() {
   const fb = await window.goodformFirebase?.ready;
   const localProducts = getGoodformProducts();
-  const source = [];
-  if (Array.isArray(GOODFORM_CATEGORY_SHOWCASE_PRODUCTS)) source.push(...GOODFORM_CATEGORY_SHOWCASE_PRODUCTS);
-  if (Array.isArray(localProducts)) source.push(...localProducts);
+  const source = Array.isArray(localProducts) ? [...localProducts] : [];
   if (fb?.enabled) {
     const firebaseProducts = await fb.getProducts();
-    if (firebaseProducts?.length) source.push(...firebaseProducts);
+    if (firebaseProducts?.length) source.unshift(...firebaseProducts);
   }
   const seen = new Set();
   return source.filter((product) => {
@@ -38,12 +36,14 @@ function matchesCategory(product, category) {
 }
 
 function visibleProductsForCategory(products, category) {
-  const visible = products.filter((product) => product.stockStatus !== "숨김");
-  const matched = visible.filter((product) => matchesCategory(product, category));
-  return matched.length ? matched.slice(0, 8) : visible.slice(0, 8);
+  return products
+    .filter((product) => product.stockStatus !== "숨김")
+    .filter((product) => matchesCategory(product, category))
+    .slice(0, 24);
 }
 
 function categoryProductCard(product, index) {
+  const compare = product.comparePriceText ? `<del>${product.comparePriceText}</del>` : "";
   return `
     <article class="category-product-card">
       <a href="/product-detail" data-product-id="${product.id}">
@@ -51,9 +51,9 @@ function categoryProductCard(product, index) {
           ${index < 3 ? '<span class="mini-sale">SALE</span>' : ""}
         </div>
         <h3>${product.name}</h3>
-        <div class="category-price"><strong>${product.priceText || formatGoodformPrice(product.price)}</strong><del>${product.comparePriceText || ""}</del></div>
+        <p class="category-summary">${product.summary || "남성 데일리웨어"}</p>
+        <div class="category-price"><strong>${product.priceText || formatGoodformPrice(product.price)}</strong>${compare}</div>
         <div class="category-tags"><span>SALE</span><span>BEST</span><span>MD</span><span>HOT</span></div>
-        <button class="tiny-cart" type="button" aria-label="장바구니">▱</button>
       </a>
     </article>`;
 }
@@ -68,11 +68,13 @@ function featuredProductCard(product) {
     </article>`;
 }
 
-function applyCategoryUI(category) {
-  document.title = `${category} 전체상품 | 비율좋은그사람`;
+function applyCategoryUI(category, count) {
+  document.title = `${category} 전체상품 | 비율좋은그남자`;
   document.getElementById("category-name-top").textContent = category;
   document.getElementById("category-name-list").textContent = category;
-  document.querySelectorAll("#category-tabs a").forEach((link) => {
+  const countEl = document.getElementById("category-count");
+  if (countEl) countEl.textContent = `TOTAL ${count.toLocaleString("ko-KR")} PRODUCT`;
+  document.querySelectorAll("#category-tabs a, .oz-category-tabs a").forEach((link) => {
     link.classList.toggle("active", link.dataset.category === category);
   });
 }
@@ -83,13 +85,12 @@ async function renderCatalog() {
   if (!grid || !featured) return;
   const category = getCurrentCategory();
   const products = visibleProductsForCategory(await getCatalogProducts(), category);
-  applyCategoryUI(category);
+  applyCategoryUI(category, products.length);
   featured.innerHTML = products.slice(0, 6).map(featuredProductCard).join("");
-  grid.innerHTML = products.map(categoryProductCard).join("");
+  grid.innerHTML = products.length ? products.map(categoryProductCard).join("") : `<p class="empty-state">이 카테고리에 등록된 상품이 없습니다.</p>`;
   document.querySelectorAll("[data-product-id]").forEach((link) => {
     link.addEventListener("click", () => selectGoodformProduct(link.dataset.productId));
   });
 }
 
 renderCatalog();
-

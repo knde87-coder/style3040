@@ -1,21 +1,37 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>상품상세 | 비율좋은그사람</title>
+    <title>상품상세 | 비율좋은그남자</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="market-body detail-market-body">
-    <header class="market-header compact">
-      <div class="market-headline">
-        <a class="kakao-consult" href="https://pf.kakao.com/_goodform" target="_blank" rel="noreferrer"><span class="kakao-badge">Ch</span><strong>카카오톡 주문상담</strong></a>
-        <a class="market-logo" href="/"><span>입는 순간 비율이 좋아지는</span><strong>비율좋은그사람</strong><em>GOODFORM</em></a>
-        <div class="market-tools"><a href="/search">검색</a><a href="/cart">장바구니</a><a href="/orders">주문조회</a></div>
+  <body class="market-body detail-market-body">    <header class="oz-header">
+      <div class="oz-topbar">
+        <form class="oz-search" action="/search" aria-label="검색">
+          <input name="q" type="search" placeholder="검색" />
+          <button type="submit" aria-label="검색">⌕</button>
+        </form>
+        <nav class="oz-member-links" aria-label="회원 메뉴">
+          <a href="/mypage">내정보</a><span>|</span><a href="/cart">장바구니</a><span>|</span><a href="/login">로그인</a><span>|</span><a href="/signup">가입</a>
+        </nav>
       </div>
-      <nav class="market-tabs" aria-label="남성복 카테고리">
-        <button class="hamburger-button" type="button" aria-label="전체 메뉴"><span></span><span></span><span></span></button>
-        <a href="/product-list">상의</a><a href="/product-list">하의</a><a href="/product-list">외투</a><a href="/product-list">상하세트</a><a href="/product-list">신발</a><a href="/product-list">ACC</a>
+      <div class="oz-brand-row">
+        <a class="oz-kakao-card" href="https://pf.kakao.com/_goodform" target="_blank" rel="noreferrer"><span>Ch</span><strong>카카오톡 주문상담</strong></a>
+        <a class="oz-logo" href="/" aria-label="비율좋은그남자 홈"><em>입는 순간</em><strong>비율좋은그남자</strong></a>
+        <a class="oz-app-card" href="/mypage"><span>▣</span><strong>어플 다운 받고<br />편리한 쇼핑</strong></a>
+      </div>
+      <nav class="oz-category-row" aria-label="상품 카테고리">
+        <a class="oz-menu-home" href="/" aria-label="홈">HOME</a>
+        <div class="oz-category-tabs">
+          <a href="/product-list?category=%EC%83%81%EC%9D%98" data-category="상의">상의</a>
+          <a href="/product-list?category=%ED%95%98%EC%9D%98" data-category="하의">하의</a>
+          <a href="/product-list?category=%EC%99%B8%ED%88%AC" data-category="외투">외투</a>
+          <a href="/product-list?category=%EC%83%81%ED%95%98%EC%84%B8%ED%8A%B8" data-category="상하세트">상하세트</a>
+          <a href="/product-list?category=%EC%8B%A0%EB%B0%9C" data-category="신발">신발</a>
+          <a href="/product-list?category=ACC" data-category="ACC">ACC</a>
+        </div>
+        <a class="oz-cart-icon" href="/cart" aria-label="장바구니">♙</a>
       </nav>
     </header>
 
@@ -69,9 +85,13 @@
     </main>
     <script src="shop-data.js"></script>
     <script src="detail.js"></script>
+    <script src="auth.js"></script>
     <script src="integration-config.js"></script>
   </body>
 </html>
+
+
+
 
 
 

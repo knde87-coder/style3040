@@ -14,6 +14,7 @@ const files = [
   "storage.rules",
   "admin.js",
   "app.js",
+  "auth.js",
   "cart.js",
   "catalog.js",
   "checkout.js",
@@ -37,13 +38,18 @@ for (const file of files) {
 
 await cp(join(root, "assets"), join(dist, "assets"), { recursive: true });
 const adminRoutes = [
+  "login",
+  "dashboard",
+  "users",
+  "posts",
+  "notices",
+  "banners",
+  "settings",
   "products",
   "categories",
   "inventory",
   "orders",
-  "users",
   "reviews",
-  "banners",
   "stats"
 ];
 
@@ -52,3 +58,5 @@ for (const route of adminRoutes) {
   await mkdir(routeDir, { recursive: true });
   await copyFile(join(root, "admin.html"), join(routeDir, "index.html"));
 }
+
+
